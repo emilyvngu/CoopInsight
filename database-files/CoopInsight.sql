@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS JobHistory
     JobID                   INT REFERENCES JobListing (JobID),
     Wage                    INT                                NOT NULL,
     EmploymentStartDATETIME DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    EmploymentEndDATETIME   DATE,
+    EmploymentEndDATETIME   DATETIME,
     TerminationReason       VARCHAR(200)                       NOT NULL
 );
 CREATE TABLE IF NOT EXISTS Rating
@@ -100,7 +100,7 @@ CREATE TABLE IF NOT EXISTS Offer
     JobID         INT REFERENCES JobListing (JobID),
     Wage          INT         NOT NULL,
     StartDATETIME DATETIME    NOT NULL,
-    EndDATETIME   DATE,
+    EndDATETIME   DATETIME,
     Status        VARCHAR(50) NOT NULL DEFAULT 'Pending'
 );
 CREATE TABLE IF NOT EXISTS ErrorLog
