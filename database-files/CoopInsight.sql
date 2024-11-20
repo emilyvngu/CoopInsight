@@ -47,7 +47,8 @@ CREATE TABLE IF NOT EXISTS Employee
     UserID     INT REFERENCES User (UserID),
     HiredOn    DATETIME    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     Role       VARCHAR(50) NOT NULL DEFAULT 'Employee',
-    JobID      INT REFERENCES JobListing (JobID)
+    JobID      INT REFERENCES JobListing (JobID),
+    CompanyID REFERENCES Company(CompanyID)
     );
 CREATE TABLE IF NOT EXISTS Student
 (
