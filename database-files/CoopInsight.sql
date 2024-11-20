@@ -77,8 +77,8 @@ CREATE TABLE IF NOT EXISTS JobHistory
     UserID                  INT REFERENCES `User` (UserID),
     JobID                   INT REFERENCES JobListing (JobID),
     Wage                    INT                                NOT NULL,
-    EmploymentStartDATETIME DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    EmploymentEndDATETIME   DATETIME,
+    EmploymentStartDate DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    EmploymentEndDate   DATETIME,
     TerminationReason       VARCHAR(200)                       NOT NULL
 );
 CREATE TABLE IF NOT EXISTS Rating
@@ -99,8 +99,8 @@ CREATE TABLE IF NOT EXISTS Offer
     ApplicantID   INT REFERENCES Student (StudentID),
     JobID         INT REFERENCES JobListing (JobID),
     Wage          INT         NOT NULL,
-    StartDATETIME DATETIME    NOT NULL,
-    EndDATETIME   DATETIME,
+    StartDate DATETIME    NOT NULL,
+    EndDate   DATETIME,
     Status        VARCHAR(50) NOT NULL DEFAULT 'Pending'
 );
 CREATE TABLE IF NOT EXISTS ErrorLog
@@ -108,7 +108,7 @@ CREATE TABLE IF NOT EXISTS ErrorLog
     LogID            INT PRIMARY KEY,
     UserID           INT REFERENCES `User` (UserID),
     ErrorDescription VARCHAR(500) NOT NULL,
-    ErrorDATETIME    DATETIME     NOT NULL
+    ErrorDate    DATETIME     NOT NULL
 );
 CREATE TABLE IF NOT EXISTS JobSkill
 (
