@@ -16,5 +16,5 @@ st.write(f"### Hi, {st.session_state['first_name']}.")
 
 # get the countries from the world bank data
 with st.echo(code_location='above'):
-    results = requests.get('http://api:4000/coop/user').json()
+    results = requests.get('http://api:4000/coop/industry').json()
     st.dataframe(results)

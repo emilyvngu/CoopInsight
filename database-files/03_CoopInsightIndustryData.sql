@@ -1,0 +1,25 @@
+USE CoopInsight;
+
+insert into Industry (IndustryID, IndustryName) values (1, 'Finance: Consumer Services');
+insert into Industry (IndustryID, IndustryName) values (2, 'Real Estate Investment Trusts');
+insert into Industry (IndustryID, IndustryName) values (3, 'Professional Services');
+insert into Industry (IndustryID, IndustryName) values (4, 'Healthcare Providers');
+insert into Industry (IndustryID, IndustryName) values (5, 'Consumer Specialties');
+insert into Industry (IndustryID, IndustryName) values (6, 'Packaged Foods');
+insert into Industry (IndustryID, IndustryName) values (7, 'Biotechnology');
+insert into Industry (IndustryID, IndustryName) values (8, 'Telecommunications Equipment');
+insert into Industry (IndustryID, IndustryName) values (9, 'Investment Managers');
+insert into Industry (IndustryID, IndustryName) values (10, 'Home Furnishings');
+insert into Industry (IndustryID, IndustryName) values (11, 'Savings Institutions');
+insert into Industry (IndustryID, IndustryName) values (12, 'Education');
+insert into Industry (IndustryID, IndustryName) values (13, 'Precious Metals');
+insert into Industry (IndustryID, IndustryName) values (14, 'Semiconductor Investment Trusts');
+insert into Industry (IndustryID, IndustryName) values (15, 'Major Banks');
+insert into Industry (IndustryID, IndustryName) values (16, 'Building Materials');
+insert into Industry (IndustryID, IndustryName) values (17, 'Automotive Aftermarket');
+insert into Industry (IndustryID, IndustryName) values (18, 'Portable Cameras');
+insert into Industry (IndustryID, IndustryName) values (19, 'Major Pharmaceuticals');
+insert into Industry (IndustryID, IndustryName) values (20, 'Computer Software: Prepackaged Software');
+insert into Industry (IndustryID, IndustryName) values (21, 'Other Consumer Services');
+insert into Industry (IndustryID, IndustryName) values (22, 'Minor Banks');
+insert into Industry (IndustryID, IndustryName) values (23, 'Local Banking');

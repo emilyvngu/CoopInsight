@@ -49,3 +49,20 @@ def get_skills():
     the_response.status_code = 200
 
     return the_response
+
+@coop.route('/industry', methods=['GET'])
+def get_industries():
+
+    cursor = db.get_db().cursor()
+    cursor.execute('''
+                   SELECT IndustryID, IndustryName
+                   FROM Industry
+                   ORDER BY IndustryID
+                   ''')
+    
+    theData = cursor.fetchall()
+
+    the_response = make_response(jsonify(theData))
+    the_response.status_code = 200
+
+    return the_response
