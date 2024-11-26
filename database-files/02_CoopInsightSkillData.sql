@@ -1,0 +1,27 @@
+USE CoopInsight;
+
+insert into Skill (SkillID, SkillName) values (1, 'Pay TV');
+insert into Skill (SkillID, SkillName) values (2, 'Critical Illness');
+insert into Skill (SkillID, SkillName) values (3, 'XForms');
+insert into Skill (SkillID, SkillName) values (4, 'Cardiac MRI');
+insert into Skill (SkillID, SkillName) values (5, 'Commercial Real Estate');
+insert into Skill (SkillID, SkillName) values (6, 'Air Quality');
+insert into Skill (SkillID, SkillName) values (7, 'TPMS');
+insert into Skill (SkillID, SkillName) values (8, 'Whitewater Kayaking');
+insert into Skill (SkillID, SkillName) values (9, 'Process Engineering');
+insert into Skill (SkillID, SkillName) values (10, 'Jewish Education');
+insert into Skill (SkillID, SkillName) values (11, 'LPS');
+insert into Skill (SkillID, SkillName) values (12, 'ICT Governance');
+insert into Skill (SkillID, SkillName) values (13, 'IBM AIX');
+insert into Skill (SkillID, SkillName) values (14, 'Vlookup');
+insert into Skill (SkillID, SkillName) values (15, 'Quality Assurance');
+insert into Skill (SkillID, SkillName) values (16, 'QROPS');
+insert into Skill (SkillID, SkillName) values (17, 'TSM');
+insert into Skill (SkillID, SkillName) values (18, 'Hardware');
+insert into Skill (SkillID, SkillName) values (19, 'Eyelash &amp; Eyebrow Tinting');
+insert into Skill (SkillID, SkillName) values (20, 'ProSystem fx Engagement');
+insert into Skill (SkillID, SkillName) values (21, 'Demand Generation');
+insert into Skill (SkillID, SkillName) values (22, 'Supporting Others');
+insert into Skill (SkillID, SkillName) values (23, 'Medical Illustration');
+insert into Skill (SkillID, SkillName) values (24, 'Ticket Sales');
+insert into Skill (SkillID, SkillName) values (25, 'VRML');

@@ -18,7 +18,7 @@ coop = Blueprint('coop', __name__)
 
 #------------------------------------------------------------
 # Get all customers from the system
-@coop.route('/coop', methods=['GET'])
+@coop.route('/user', methods=['GET'])
 def get_users():
 
     cursor = db.get_db().cursor()
@@ -31,4 +31,21 @@ def get_users():
     
     the_response = make_response(jsonify(theData))
     the_response.status_code = 200
+    return the_response
+
+@coop.route('/skill', methods=['GET'])
+def get_skills():
+
+    cursor = db.get_db().cursor()
+    cursor.execute('''
+                   SELECT SkillID, SkillName
+                   FROM Skill
+                   ORDER BY SkillID
+                   ''')
+    
+    theData = cursor.fetchall()
+
+    the_response = make_response(jsonify(theData))
+    the_response.status_code = 200
+
     return the_response

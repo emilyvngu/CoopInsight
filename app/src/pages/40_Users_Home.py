@@ -1,21 +1,25 @@
 import logging
 logger = logging.getLogger(__name__)
-import pandas as pd
+
 import streamlit as st
 from modules.nav import SideBarLinks
-import requests
 
-# Call the SideBarLinks from the nav module in the modules directory
+st.set_page_config(layout = 'wide')
+
+# Show appropriate sidebar links for the role of the currently logged in user
 SideBarLinks()
 
-# set the header of the page
-st.header('World Bank Data')
+st.title(f"Welcome CoopInsight Data Viewer, {st.session_state['first_name']}.")
+st.write('')
+st.write('')
+st.write('### What would you like to do today?')
 
-# You can access the session state to make a more customized/personalized app experience
-st.write(f"### Hi, {st.session_state['first_name']}.")
+if st.button('View User Data', 
+             type='primary',
+             use_container_width=True):
+  st.switch_page('pages/41_User_Data.py')
 
-# get the countries from the world bank data
-with st.echo(code_location='above'):
-    results = requests.get('http://api:4000/coop/coop').json()
-    print(results)
-    st.dataframe(results)
+if st.button('View Skill Data', 
+             type='primary',
+             use_container_width=True):
+  st.switch_page('pages/42_Skill_Data.py')
