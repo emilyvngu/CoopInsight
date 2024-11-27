@@ -2,6 +2,7 @@
 # Sample customers blueprint of endpoints
 # Remove this file if you are not using it in your project
 ########################################################
+import sys
 from flask import Blueprint
 from flask import request
 from flask import jsonify
@@ -50,7 +51,7 @@ def get_skills():
 
     return the_response
 
-@coop.route('/industry', methods=['GET'])
+@coop.route('/industry', methods=['GET']) 
 def get_industries():
 
     cursor = db.get_db().cursor()
@@ -66,3 +67,39 @@ def get_industries():
     the_response.status_code = 200
 
     return the_response
+
+
+def debug(s):
+    print('PPP', s, file=sys.stderr)
+
+@coop.route('/updateUser', methods=['PUT'])
+def update_user():
+
+    user = request.form
+
+    debug(user)
+
+    id = user['UserID']
+    first = user['FirstName']
+    last = user['LastName']
+    email = user['Email'] 
+    password = user['Password']
+    phone = user['PhoneNumber']
+
+    cursor = db.get_db().cursor()
+
+    query = f'''
+                   INSERT
+                   INTO User (UserID, FirstName, LastName, Email, Password, PhoneNumber, AccessLevel)
+                   VALUES ('{id}', '{first}', '{last}', '{email}', '{password}', '{phone}', 'User');
+                   '''
+    
+    debug(query)
+
+    cursor.execute(query) 
+    
+    db.get_db().commit()
+
+    response = make_response('Successfully Added User')
+    response.status_code = 200
+    return response
