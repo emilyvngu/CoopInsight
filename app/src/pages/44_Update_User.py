@@ -25,7 +25,7 @@ with st.echo(code_location='above'):
     st.session_state['Password'] = st.text_input('Password')
     st.session_state['PhoneNumber'] = st.text_input('PhoneNumber')
 
-    st.text(str(st.session_state['UserID']) + st.session_state['FirstName'] + st.session_state['LastName'] + st.session_state['Email'] + st.session_state['PhoneNumber'])
+    st.text("ID: " + str(st.session_state['UserID']) + " First Name: " + st.session_state['FirstName'] + " Last Name: " + st.session_state['LastName'] + " Email: " + st.session_state['Email'] + " Password: " + st.session_state['Password'] + " Phone Number: " + st.session_state['PhoneNumber'])
 
 if st.button('Update User Data', type='primary',use_container_width=True):
   d = {}
