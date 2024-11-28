@@ -236,3 +236,46 @@ def get_skill_id():
     the_response.status_code = 200
 
     return the_response
+
+@coop.route('/applyToJob', methods=['PUT'])
+def apply_to_job():
+    user = request.form
+
+    jobID = user['JobID']
+
+    studentID = user['StudentID']
+
+    cursor = db.get_db().cursor()
+
+    query = f'''
+            INSERT INTO
+            Applicant (StudentID, JobID)
+            VALUES ('{studentID}', '{jobID}')
+            '''
+    
+    cursor.execute(query)
+
+    db.get_db().commit()
+
+    response = make_response('Successfully Applied!')
+    response.status_code = 200
+
+    return response
+
+
+@coop.route('/lastStudentID', methods=['GET'])
+def get_last_student_id():
+    cursor = db.get_db().cursor()
+    cursor.execute('''
+                   SELECT StudentID
+                   FROM Student
+                   ORDER BY StudentID DESC
+                   LIMIT 1
+                   ''')
+    
+    theData = cursor.fetchall()
+
+    the_response = make_response(jsonify(theData))
+    the_response.status_code = 200
+
+    return the_response
