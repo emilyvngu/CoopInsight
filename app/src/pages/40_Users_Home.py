@@ -31,3 +31,6 @@ if st.button('View Industry Data',
 
 if st.button('Update User Data', type='primary',use_container_width=True):
   st.switch_page('pages/44_Update_User.py')
+
+if st.button('View Job Listings', type='primary',use_container_width=True):
+  st.switch_page('pages/45_User_Job_Listings_Home.py')

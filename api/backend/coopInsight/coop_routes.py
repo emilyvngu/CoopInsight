@@ -120,3 +120,119 @@ def get_last_user_id():
     the_response.status_code = 200
 
     return the_response
+
+
+@coop.route('/jobListings', methods=['GET'])
+def get_job_listings():
+    cursor = db.get_db().cursor()
+    cursor.execute('''
+                   SELECT JobID, Name, Major, MinGPA 
+                   FROM JobListing
+                   ORDER BY JobID
+                   ''')
+    
+    theData = cursor.fetchall()
+
+    the_response = make_response(jsonify(theData))
+    the_response.status_code = 200
+
+    return the_response
+
+
+@coop.route('/jobListingDetails')
+def get_specific_listing():
+    
+    user = request.form
+
+    id = user['JobID']
+
+    cursor = db.get_db().cursor()
+
+    query = f'''
+            SELECT * 
+            FROM JobListing
+            WHERE JobID = '{id}'
+            '''
+    
+    debug(query)
+    
+    cursor.execute(query)
+
+    theData = cursor.fetchall()
+
+    the_response = make_response(jsonify(theData))
+    the_response.status_code = 200
+
+    return the_response
+
+@coop.route('/getIndustry', methods= ['GET'])
+def get_industry_id():
+
+    user = request.form
+
+    id = user['IndustryID']
+
+    cursor = db.get_db().cursor()
+
+    query = f'''
+            SELECT IndustryName
+            FROM Industry
+            WHERE IndustryID = '{id}'
+            '''
+    
+    cursor.execute(query)
+
+    theData = cursor.fetchall()
+
+    the_response = make_response(jsonify(theData))
+    the_response.status_code = 200
+
+    return the_response
+
+@coop.route('/getCompany', methods= ['GET'])
+def get_company_id():
+
+    user = request.form
+
+    id = user['CompanyID']
+
+    cursor = db.get_db().cursor()
+
+    query = f'''
+            SELECT CompanyName
+            FROM Company
+            WHERE CompanyID = '{id}'
+            '''
+    
+    cursor.execute(query)
+
+    theData = cursor.fetchall()
+
+    the_response = make_response(jsonify(theData))
+    the_response.status_code = 200
+
+    return the_response
+
+@coop.route('/getSkill', methods= ['GET'])
+def get_skill_id():
+
+    user = request.form
+
+    id = user['SkillID']
+
+    cursor = db.get_db().cursor()
+
+    query = f'''
+            SELECT SkillName
+            FROM Skill
+            WHERE SkillID = '{id}'
+            '''
+    
+    cursor.execute(query)
+
+    theData = cursor.fetchall()
+
+    the_response = make_response(jsonify(theData))
+    the_response.status_code = 200
+
+    return the_response
