@@ -103,3 +103,20 @@ def update_user():
     response = make_response('Successfully Added User')
     response.status_code = 200
     return response
+
+@coop.route('/lastUserID', methods=['GET'])
+def get_last_user_id():
+    cursor = db.get_db().cursor()
+    cursor.execute('''
+                   SELECT UserID
+                   FROM User
+                   ORDER BY UserID DESC
+                   LIMIT 1
+                   ''')
+    
+    theData = cursor.fetchall()
+
+    the_response = make_response(jsonify(theData))
+    the_response.status_code = 200
+
+    return the_response

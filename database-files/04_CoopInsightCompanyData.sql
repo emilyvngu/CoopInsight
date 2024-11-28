@@ -1,0 +1,27 @@
+USE CoopInsight;
+
+insert into Company (CompanyID, CompanyName, IndustryID, CompanyDescription, AdminID) values (1, 'Topicshots', 12, 'Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh.', 29);
+insert into Company (CompanyID, CompanyName, IndustryID, CompanyDescription, AdminID) values (2, 'Centimia', 21, 'Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti.', 92);
+insert into Company (CompanyID, CompanyName, IndustryID, CompanyDescription, AdminID) values (3, 'Gigaclub', 12, 'Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat.', 12);
+insert into Company (CompanyID, CompanyName, IndustryID, CompanyDescription, AdminID) values (4, 'Twiyo', 11, 'Morbi ut odio. Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim.', 75);
+insert into Company (CompanyID, CompanyName, IndustryID, CompanyDescription, AdminID) values (5, 'Oyope', 5, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti.', 1);
+insert into Company (CompanyID, CompanyName, IndustryID, CompanyDescription, AdminID) values (6, 'Skalith', 21, 'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam.', 44);
+insert into Company (CompanyID, CompanyName, IndustryID, CompanyDescription, AdminID) values (7, 'Brainsphere', 7, 'Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat.', 68);
+insert into Company (CompanyID, CompanyName, IndustryID, CompanyDescription, AdminID) values (8, 'Twimm', 1, 'Pellentesque at nulla.', 6);
+insert into Company (CompanyID, CompanyName, IndustryID, CompanyDescription, AdminID) values (9, 'Tagopia', 14, 'Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.', 62);
+insert into Company (CompanyID, CompanyName, IndustryID, CompanyDescription, AdminID) values (10, 'Brightdog', 20, 'Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh. In quis justo.', 14);
+insert into Company (CompanyID, CompanyName, IndustryID, CompanyDescription, AdminID) values (11, 'Lajo', 7, 'Aenean fermentum. Donec ut mauris eget massa tempor convallis.', 25);
+insert into Company (CompanyID, CompanyName, IndustryID, CompanyDescription, AdminID) values (12, 'Zoomzone', 4, 'In hac habitasse platea dictumst.', 57);
+insert into Company (CompanyID, CompanyName, IndustryID, CompanyDescription, AdminID) values (13, 'Tagchat', 6, 'Cras pellentesque volutpat dui. Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc.', 99);
+insert into Company (CompanyID, CompanyName, IndustryID, CompanyDescription, AdminID) values (14, 'Brightbean', 2, 'Morbi quis tortor id nulla ultrices aliquet. Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam.', 66);
+insert into Company (CompanyID, CompanyName, IndustryID, CompanyDescription, AdminID) values (15, 'Pixonyx', 3, 'Nulla ut erat id mauris vulputate elementum.', 19);
+insert into Company (CompanyID, CompanyName, IndustryID, CompanyDescription, AdminID) values (16, 'Quamba', 10, 'Mauris sit amet eros.', 70);
+insert into Company (CompanyID, CompanyName, IndustryID, CompanyDescription, AdminID) values (17, 'Photospace', 12, 'Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus. Phasellus in felis. Donec semper sapien a libero.', 77);
+insert into Company (CompanyID, CompanyName, IndustryID, CompanyDescription, AdminID) values (18, 'Yozio', 15, 'Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl. Aenean lectus.', 87);
+insert into Company (CompanyID, CompanyName, IndustryID, CompanyDescription, AdminID) values (19, 'Ailane', 20, 'Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem. Fusce consequat. Nulla nisl. Nunc nisl.', 67);
+insert into Company (CompanyID, CompanyName, IndustryID, CompanyDescription, AdminID) values (20, 'Skinix', 2, 'Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem. Fusce consequat.', 95);
+insert into Company (CompanyID, CompanyName, IndustryID, CompanyDescription, AdminID) values (21, 'Vimbo', 16, 'Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula.', 88);
+insert into Company (CompanyID, CompanyName, IndustryID, CompanyDescription, AdminID) values (22, 'Photolist', 8, 'Suspendisse potenti.', 6);
+insert into Company (CompanyID, CompanyName, IndustryID, CompanyDescription, AdminID) values (23, 'Mydo', 17, 'Vestibulum ac est lacinia nisi venenatis tristique.', 62);
+insert into Company (CompanyID, CompanyName, IndustryID, CompanyDescription, AdminID) values (24, 'Janyx', 20, 'In hac habitasse platea dictumst.', 98);
+insert into Company (CompanyID, CompanyName, IndustryID, CompanyDescription, AdminID) values (25, 'Eamia', 3, 'Nunc rhoncus dui vel sem. Sed sagittis.', 62);

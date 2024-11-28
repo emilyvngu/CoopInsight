@@ -18,7 +18,9 @@ st.write(f"### Hi, {st.session_state['first_name']}.")
 # get the countries from the world bank data
 with st.echo(code_location='above'):
 
-    st.session_state['UserID'] = st.number_input('UserID', min_value=0, step= 1)
+    minval = requests.get('http://api:4000/coop/lastUserID').json()[0]['UserID'] # this is a dictionary that im accessing the first element of and getting the value associated with the key 'UserID'
+
+    st.session_state['UserID'] = st.number_input('UserID', min_value=minval+1, step= 1)
     st.session_state['FirstName'] = st.text_input('FirstName')
     st.session_state['LastName'] = st.text_input('LastName')
     st.session_state['Email'] = st.text_input('Email')
