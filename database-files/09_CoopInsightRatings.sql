@@ -37,3 +37,7 @@ insert into Rating (OverallRating, Review, WorkCultureRating, CompensationRating
 values (3,
         'The company is decent, however I think there are better options when it comes to the work force in this field. The CEO is funny, though :)',
         5, 3, 3, 3, 3, 3, 3);
+insert into Rating (OverallRating, Review, WorkCultureRating, CompensationRating, WorkLifeBalanceRating,
+                    LearningOpportunitiesRating, JobID, CompanyID, UserID)
+values (1, 'I wish the company would listen. I tried talking to HR about my concerns and they did nothing.', 1, 1, 1, 1,
+        4, 4, 4);
