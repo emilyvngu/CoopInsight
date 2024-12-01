@@ -33,9 +33,16 @@ SideBarLinks(show_home=True)
 #    The major content of this page
 # ***************************************************
 
-# set the title of the page and provide a simple prompt. 
+# set the title of the page.
 logger.info("Loading the Home page of the app")
 st.title('CoopInsight')
+
+# NEU logo image sample
+st.write('\n')
+st.image("app/static/logo.png", caption="NEU logo")
+st.markdown("[![Northeastern Website](app/static/logo.png)](https://www.northeastern.edu/)")
+
+# simple prompt
 st.write('\n\n')
 st.write('### Which persona would you like to demo?')
 
