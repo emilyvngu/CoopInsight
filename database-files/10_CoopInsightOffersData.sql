@@ -1,0 +1,23 @@
+USE CoopInsight;
+
+insert into Offer (OfferID, ApplicantID, JobID, Wage, StartDate, EndDate, Status) values (1, 2, 23, 35700.69, '2023-08-09 04:26:32', '2024-03-31 10:32:51', 'Pending');
+insert into Offer (OfferID, ApplicantID, JobID, Wage, StartDate, EndDate, Status) values (2, 40, 37, 44475.99, '2023-10-05 13:25:30', '2024-08-21 01:32:24', 'Pending');
+insert into Offer (OfferID, ApplicantID, JobID, Wage, StartDate, EndDate, Status) values (3, 22, 31, 27758.12, '2023-03-01 07:02:15', '2024-07-09 11:21:14', 'Pending');
+insert into Offer (OfferID, ApplicantID, JobID, Wage, StartDate, EndDate, Status) values (4, 44, 36, 33487.33, '2023-05-23 22:05:23', '2024-06-14 06:47:21', 'Pending');
+insert into Offer (OfferID, ApplicantID, JobID, Wage, StartDate, EndDate, Status) values (5, 2, 21, 18842.77, '2023-05-13 00:38:48', '2024-03-19 10:49:32', 'Accepted');
+insert into Offer (OfferID, ApplicantID, JobID, Wage, StartDate, EndDate, Status) values (6, 13, 17, 33015.55, '2023-04-01 22:48:58', '2024-02-29 19:12:00', 'Pending');
+insert into Offer (OfferID, ApplicantID, JobID, Wage, StartDate, EndDate, Status) values (7, 33, 20, 18405.86, '2022-12-03 23:10:19', '2024-02-23 16:26:47', 'Pending');
+insert into Offer (OfferID, ApplicantID, JobID, Wage, StartDate, EndDate, Status) values (8, 33, 18, 19229.04, '2023-05-08 04:08:49', '2023-12-15 23:59:15', 'Pending');
+insert into Offer (OfferID, ApplicantID, JobID, Wage, StartDate, EndDate, Status) values (9, 4, 34, 27250.63, '2023-11-25 20:49:16', '2024-10-02 12:23:09', 'Pending');
+insert into Offer (OfferID, ApplicantID, JobID, Wage, StartDate, EndDate, Status) values (10, 25, 40, 25162.88, '2023-01-19 20:24:25', '2024-09-22 11:49:55', 'Accepted');
+insert into Offer (OfferID, ApplicantID, JobID, Wage, StartDate, EndDate, Status) values (11, 43, 13, 37318.55, '2023-10-21 16:09:38', '2024-09-27 13:38:28', 'Pending');
+insert into Offer (OfferID, ApplicantID, JobID, Wage, StartDate, EndDate, Status) values (12, 29, 10, 33256.59, '2023-01-07 16:04:25', '2024-08-04 23:51:31', 'Pending');
+insert into Offer (OfferID, ApplicantID, JobID, Wage, StartDate, EndDate, Status) values (13, 37, 22, 34883.69, '2023-07-23 09:45:37', '2024-07-18 15:37:59', 'Pending');
+insert into Offer (OfferID, ApplicantID, JobID, Wage, StartDate, EndDate, Status) values (14, 11, 9, 32978.32, '2023-06-21 21:53:11', '2024-01-10 00:36:29', 'Pending');
+insert into Offer (OfferID, ApplicantID, JobID, Wage, StartDate, EndDate, Status) values (15, 12, 7, 32667.49, '2023-01-23 16:24:16', '2024-03-13 13:51:00', 'Pending');
+insert into Offer (OfferID, ApplicantID, JobID, Wage, StartDate, EndDate, Status) values (16, 47, 3, 45699.72, '2023-06-09 10:08:42', '2024-05-29 11:13:52', 'Pending');
+insert into Offer (OfferID, ApplicantID, JobID, Wage, StartDate, EndDate, Status) values (17, 45, 7, 32266.6, '2022-12-04 21:36:33', '2024-05-06 04:50:33', 'Pending');
+insert into Offer (OfferID, ApplicantID, JobID, Wage, StartDate, EndDate, Status) values (18, 32, 6, 39105.31, '2023-05-14 04:39:18', '2024-06-04 13:07:08', 'Pending');
+insert into Offer (OfferID, ApplicantID, JobID, Wage, StartDate, EndDate, Status) values (19, 26, 23, 46251.07, '2023-11-08 07:27:29', '2024-10-14 16:41:46', 'Pending');
+insert into Offer (OfferID, ApplicantID, JobID, Wage, StartDate, EndDate, Status) values (20, 14, 17, 24371.4, '2023-07-07 23:11:20', '2024-05-10 07:17:57', 'Pending');
+insert into Offer (OfferID, ApplicantID, JobID, Wage, StartDate, EndDate, Status) values (21, 51, 17, 30000.4, '2023-07-07 23:11:20', '2024-05-10 07:17:57', 'Pending');

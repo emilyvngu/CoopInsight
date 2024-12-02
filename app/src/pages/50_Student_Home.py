@@ -17,9 +17,9 @@ st.write('### What would you like to do today?')
 if st.button('Apply for Co-ops',
              type='primary',
              use_container_width=True):
-  st.switch_page('pages/51_Coop_Dashboard.py')
+  st.switch_page('pages/45_User_Job_Listings_Home.py')
 
-if st.button('View World Map Demo', 
+if st.button('View Job Offers', 
              type='primary',
              use_container_width=True):
-  st.switch_page('pages/02_Map_Demo.py')
+  st.switch_page('pages/52_Offer_Dashboard.py')

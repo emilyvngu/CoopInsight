@@ -1,7 +1,7 @@
 USE CoopInsight;
 
 
-insert into User (UserID, FirstName, LastName, Email, Password, PhoneNumber, AccessLevel) values (1, 'Damien', 'Janaud', 'djanaud0@ucoz.com', 'jF5,rqv/)?eip', '119-121-0204', 'User');
+insert into User (UserID, FirstName, LastName, Email, Password, PhoneNumber, AccessLevel) values (1, 'Joe', 'Schmoe', 'js@gmail.com', 'jF5,rqv/)?eip', '119-121-0204', 'User');
 insert into User (UserID, FirstName, LastName, Email, Password, PhoneNumber, AccessLevel) values (2, 'Brear', 'Torbet', 'btorbet1@alibaba.com', 'oB8RxL&UbwG!''{', '108-238-2305', 'User');
 insert into User (UserID, FirstName, LastName, Email, Password, PhoneNumber, AccessLevel) values (3, 'Bald', 'Andersch', 'bandersch2@europa.eu', 'lX9m4N28{qtX', '517-461-6867', 'User');
 insert into User (UserID, FirstName, LastName, Email, Password, PhoneNumber, AccessLevel) values (4, 'Fredra', 'Bradmore', 'fbradmore3@mediafire.com', 'aP17`B4EhM}~', '799-225-2697', 'User');

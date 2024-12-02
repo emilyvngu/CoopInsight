@@ -50,3 +50,4 @@ insert into Student (StudentID, UserID, GPA, Skill, Major, SupervisorID) values 
 insert into Student (StudentID, UserID, GPA, Skill, Major, SupervisorID) values (48, 5, 3.27, 21, 'Training', 34);
 insert into Student (StudentID, UserID, GPA, Skill, Major, SupervisorID) values (49, 19, 1.68, 25, 'Legal', 6);
 insert into Student (StudentID, UserID, GPA, Skill, Major, SupervisorID) values (50, 27, 1.23, 15, 'Training', 25);
+insert into Student (StudentID, UserID, GPA, Skill, Major, SupervisorID) values (51, 1, 3.50, 15, 'Training', 25);

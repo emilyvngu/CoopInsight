@@ -39,7 +39,7 @@ st.title('CoopInsight')
 
 # NEU logo image sample
 st.write('\n')
-st.image("app/static/logo.png", caption="NEU logo")
+#st.image("static/logo.png", caption="NEU logo")
 st.markdown("[![Northeastern Website](app/static/logo.png)](https://www.northeastern.edu/)")
 
 # simple prompt
@@ -56,6 +56,8 @@ if st.button("Act as Joe Shmoe, a Student currently on search for a Co-op.",
     st.session_state['authenticated'] = True
     st.session_state['role'] = 'student'
     st.session_state['username'] = 'Joe Shmoe'
+    st.session_state['UserID'] = 1
+    st.session_state['StudentID'] = 51
 
     logger.info("Logging in as Student Persona; Joe Shmoe.")
     st.switch_page('pages/50_Student_Home.py')

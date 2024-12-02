@@ -1,5 +1,6 @@
 import logging
 logger = logging.getLogger(__name__)
+import pandas as pd
 import streamlit as st
 from modules.nav import SideBarLinks
 import requests
@@ -38,11 +39,10 @@ st.text("Minimum Grade Point Average: " + str(minGPA))
 st.text("Date Posted: " + posted)
 st.text("Description: " + description)
 
+if st.button("Accept offer?", type='primary', use_container_width=True):
+    requests.put('http://api:4000/coop/acceptOffer', data= st.session_state)
+    st.text("Accepted offer for: " + name + " with wage: " + str(st.session_state['Wage']) + " as student: " + str(st.session_state['StudentID']) + ": " + st.session_state['username'])
 
-maxval = requests.get('http://api:4000/coop/lastStudentID').json()[0]['StudentID']
-
-#st.session_state['StudentID'] = st.session_state['StudentID']
-
-if st.button("Apply to job?", type='primary', use_container_width=True):
-    requests.put('http://api:4000/coop/lastStudentID', data= st.session_state)
-    st.text("Successfully applied to " + str(st.session_state['jobName']) + " as student: " + str(st.session_state['StudentID']) + ": " + st.session_state['username'])
+if st.button("Reject offer?", type='primary', use_container_width=True):
+    requests.put('http://api:4000/coop/rejectOffer', data= st.session_state)
+    st.text("Rejected offer for: " + name + " with wage: " + str(st.session_state['Wage']) + " as student: " + str(st.session_state['StudentID']) + ": " + st.session_state['username'])

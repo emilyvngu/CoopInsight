@@ -28,5 +28,5 @@ if len(event.selection['rows']):
 
     st.session_state['jobName'] = jobName
 
-    st.page_link('pages/46_Detail_Job.py', label=f'Go to {jobName} Details')
+    #st.page_link('pages/46_Detail_Job.py', label=f'Go to {jobName} Details')
     st.page_link('pages/47_Apply_To_Job.py', label=f'Apply to {jobName}')

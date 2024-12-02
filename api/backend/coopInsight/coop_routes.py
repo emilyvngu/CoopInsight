@@ -279,3 +279,95 @@ def get_last_student_id():
     the_response.status_code = 200
 
     return the_response
+
+@coop.route('/studentSpecificOffers', methods=['GET'])
+def get_student_specific_offers():
+    user = request.form
+
+    applicantID = user['StudentID']
+
+    cursor = db.get_db().cursor()
+
+    query = f'''
+            SELECT *
+            FROM Offer
+            WHERE ApplicantID = '{applicantID}'
+            '''
+    
+    cursor.execute(query)
+
+    theData = cursor.fetchall()
+
+    the_response = make_response(jsonify(theData))
+    the_response.status_code = 200
+
+    return the_response
+
+@coop.route('/acceptOffer', methods=['PUT'])
+def accept_offer():
+    user = request.form
+
+    offerID = user['OfferID']
+
+    query = f'''
+            UPDATE Offer
+            SET Status = 'Accepted'
+            WHERE OfferID = '{offerID}'
+            '''
+    
+    cursor = db.get_db().cursor()
+
+    cursor.execute(query)
+
+    db.get_db().commit()
+
+    theResponse = make_response('Accepted!')
+    theResponse.status_code = 200
+
+    return theResponse
+
+@coop.route('/rejectOffer', methods=['PUT'])
+def reject_offer():
+    user = request.form
+
+    offerID = user['OfferID']
+
+    query = f'''
+            UPDATE Offer
+            SET Status = 'Rejected'
+            WHERE OfferID = '{offerID}'
+            '''
+    
+    cursor = db.get_db().cursor()
+
+    cursor.execute(query)
+
+    db.get_db().commit()
+
+    theResponse = make_response('Rejected!')
+    theResponse.status_code = 200
+
+    return theResponse
+
+@coop.route('/resetOffer', methods=['PUT'])
+def reset_offer():
+    user = request.form
+
+    offerID = user['OfferID']
+
+    query = f'''
+            UPDATE Offer
+            SET Status = 'Pending'
+            WHERE OfferID = '{offerID}'
+            '''
+    
+    cursor = db.get_db().cursor()
+
+    cursor.execute(query)
+
+    db.get_db().commit()
+
+    theResponse = make_response('Rejected!')
+    theResponse.status_code = 200
+
+    return theResponse
