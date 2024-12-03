@@ -68,6 +68,8 @@ if st.button('Act as Jane Lane, an Employer looking to hire a Co-op.',
     st.session_state['authenticated'] = True
     st.session_state['role'] = 'employer'
     st.session_state['username'] = 'Jane Lane'
+    st.session_state['UserID'] = 101
+    st.session_state['EmployeeID'] = 41
 
     st.switch_page('pages/60_Employer_Home.py')
 

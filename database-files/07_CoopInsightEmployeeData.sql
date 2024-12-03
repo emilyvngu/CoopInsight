@@ -40,3 +40,4 @@ insert into Employee (EmployeeID, UserID, HiredOn, Role, JobID, CompanyID) value
 insert into Employee (EmployeeID, UserID, HiredOn, Role, JobID, CompanyID) values (38, 64, '2024-05-29 06:48:28', 'Staff Accountant IV', 4, 20);
 insert into Employee (EmployeeID, UserID, HiredOn, Role, JobID, CompanyID) values (39, 16, '2024-03-29 01:33:32', 'Desktop Support Technician', 30, 2);
 insert into Employee (EmployeeID, UserID, HiredOn, Role, JobID, CompanyID) values (40, 70, '2023-12-28 09:38:33', 'Budget/Accounting Analyst IV', 22, 19);
+insert into Employee (EmployeeID, UserID, HiredOn, Role, JobID, CompanyID) values (41, 101, '2024-01-01 02:02:02', 'Hiring Manager', 1, 1);

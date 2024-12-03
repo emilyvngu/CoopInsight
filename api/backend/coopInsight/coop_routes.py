@@ -371,3 +371,119 @@ def reset_offer():
     theResponse.status_code = 200
 
     return theResponse
+
+@coop.route('/getCompanyID', methods=['GET'])
+def get_employee_company():
+    user = request.form
+
+    employeeID = user['EmployeeID']
+
+    query = f'''
+            SELECT CompanyID
+            FROM Employee
+            WHERE EmployeeID = '{employeeID}'
+            '''
+    
+    cursor = db.get_db().cursor()
+
+    cursor.execute(query)
+
+    theData = cursor.fetchall()
+
+    the_response = make_response(jsonify(theData))
+    the_response.status_code = 200
+
+    return the_response
+
+@coop.route('/getCompanyJobListings', methods=['GET'])
+def get_company_jobs():
+    user = request.form
+
+    companyID = user['CompanyID']
+
+
+    query = f'''
+            SELECT *
+            FROM JobListing
+            WHERE JobID = '{companyID}'
+            '''
+    
+    cursor = db.get_db().cursor()
+
+    cursor.execute(query)
+
+    theData = cursor.fetchall()
+
+    the_response = make_response(jsonify(theData))
+    the_response.status_code = 200
+
+    return the_response
+
+@coop.route('/getCompanyJobApplicants', methods= ['GET'])
+def get_company_job_applicants():
+    user = request.form
+
+    jobID = user['JobID']
+
+    query = f'''
+            SELECT *
+            FROM Applicant
+            WHERE JobID = '{jobID}'
+            '''
+    
+    cursor = db.get_db().cursor()
+
+    cursor.execute(query)
+
+    theData = cursor.fetchall()
+
+    the_response = make_response(jsonify(theData))
+    the_response.status_code = 200
+
+    return the_response
+
+@coop.route('/getApplicantProfile', methods= ['GET'])
+def get_applicant_profile():
+    user = request.form
+
+    studentID = user['StudentID']
+
+    query = f'''
+            SELECT *
+            FROM Student
+            WHERE StudentID = '{studentID}'
+            '''
+    
+    cursor = db.get_db().cursor()
+
+    cursor.execute(query)
+
+    theData = cursor.fetchall()
+
+    the_response = make_response(jsonify(theData))
+    the_response.status_code = 200
+
+    return the_response
+
+@coop.route('/getStudentUserDetails', methods= ['GET'])
+def get_student_user_details():
+    user = request.form
+
+    userID = user['UserID']
+
+    query = f'''
+            SELECT *
+            FROM USER
+            WHERE UserID = '{userID}'
+            '''
+    
+    cursor = db.get_db().cursor()
+
+    cursor.execute(query)
+
+    theData = cursor.fetchall()
+
+    the_response = make_response(jsonify(theData))
+    the_response.status_code = 200
+
+    return the_response
