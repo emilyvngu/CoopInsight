@@ -407,7 +407,7 @@ def get_company_jobs():
     query = f'''
             SELECT *
             FROM JobListing
-            WHERE JobID = '{companyID}'
+            WHERE CompanyID = '{companyID}'
             '''
     
     cursor = db.get_db().cursor()
@@ -544,3 +544,64 @@ def update_applicant():
     theResponse.status_code = 200
 
     return theResponse
+
+@coop.route('/getMajors', methods=['GET'])
+def get_majors():
+
+    cursor = db.get_db().cursor()
+
+    query = f'''
+            SELECT Major
+            FROM StudentMajor;
+            '''
+
+    cursor.execute(query)
+
+    theData = cursor.fetchall()
+
+    the_response = make_response(jsonify(theData))
+    the_response.status_code = 200
+
+    return the_response
+
+@coop.route('/postJobOffer', methods=['PUT'])
+def post_job_offer():
+    user = request.form
+
+    name = user['Position']
+    companyID = user['CompanyID']
+    major = user['Major']
+    minGPA = user['MinGPA']
+    industryID = user['IndustryID']
+    description = user['JobDescription']
+    skill = user['SkillID']
+
+    query = f'''
+            INSERT INTO
+            JobListing (Name, CompanyID, Major, MinGPA, IndustryID, JobDescription, SkillID)
+            VALUES ('{name}', '{companyID}', '{major}', '{minGPA}', '{industryID}', '{description}', '{skill}')
+    '''
+
+    cursor = db.get_db().cursor()
+
+    cursor.execute(query)
+
+    db.get_db().commit()
+
+    theResponse = make_response('Posted!')
+    theResponse.status_code = 200
+
+    return theResponse
+
+#     CREATE TABLE IF NOT EXISTS JobListing
+# (
+#     JobID          INT PRIMARY KEY AUTO_INCREMENT,
+#     Name           VARCHAR(50)  NOT NULL,
+#     CompanyID      INT          NOT NULL REFERENCES Company (CompanyID) ON UPDATE CASCADE ON DELETE CASCADE,
+#     Major          VARCHAR(50)  NOT NULL REFERENCES StudentMajor (Major) ON UPDATE CASCADE ON DELETE CASCADE,
+#     MinGPA         FLOAT(4)     NOT NULL,
+#     IndustryID     INT          NOT NULL REFERENCES Industry (IndustryID) ON UPDATE CASCADE ON DELETE RESTRICT,
+#     Posted         DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP,
+#     JobDescription VARCHAR(500) NOT NULL,
+#     SkillID        INT          NOT NULL REFERENCES Skill (SkillID) ON UPDATE CASCADE ON DELETE RESTRICT
+# );

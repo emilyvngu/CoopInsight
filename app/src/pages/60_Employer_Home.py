@@ -25,7 +25,7 @@ if st.button('View Job Listings',
              use_container_width=True):
   st.switch_page('pages/62_Job_Listings.py')
 
-if st.button('View World Map Demo', 
+if st.button('Post An Offering', 
              type='primary',
              use_container_width=True):
-  st.switch_page('pages/02_Map_Demo.py')
+  st.switch_page('pages/61_Job_Post.py')
