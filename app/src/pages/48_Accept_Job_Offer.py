@@ -29,6 +29,7 @@ description = data[0]['JobDescription']
 minGPA = data[0]['MinGPA']
 posted = data[0]['Posted']
 major = data[0]['Major']
+wage = st.session_state['Wage']
 
 st.title(name + " Details:")
 st.text("Company Name: " + company)
@@ -38,6 +39,7 @@ st.text("Desired Major: " + major)
 st.text("Minimum Grade Point Average: " + str(minGPA))
 st.text("Date Posted: " + posted)
 st.text("Description: " + description)
+st.text("Wage: " + str(wage))
 
 if st.button("Accept offer?", type='primary', use_container_width=True):
     requests.put('http://api:4000/coop/acceptOffer', data= st.session_state)
