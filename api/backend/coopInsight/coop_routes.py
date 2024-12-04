@@ -473,10 +473,12 @@ def get_student_user_details():
 
     query = f'''
             SELECT *
-            FROM USER
+            FROM User
             WHERE UserID = '{userID}'
             '''
     
+    debug(query)
+
     cursor = db.get_db().cursor()
 
     cursor.execute(query)
@@ -487,3 +489,32 @@ def get_student_user_details():
     the_response.status_code = 200
 
     return the_response
+
+@coop.route('/makeOffer', methods=['PUT'])
+def make_an_offer():
+    user = request.form
+
+    jobID = user['JobID']
+    appID = user['ApplicantID']
+
+    wage = user['Wage']
+    start = user['StartDate']
+    end = user['EndDate']
+
+
+    cursor = db.get_db().cursor()
+
+    query = f'''
+            INSERT INTO
+            Offer (ApplicantID, JobID, Wage, StartDate, EndDate)
+            VALUES ('{appID}', '{jobID}', '{wage}', '{start}', '{end}')
+            '''
+    
+    cursor.execute(query)
+
+    db.get_db().commit()
+
+    response = make_response('Successfully Applied!')
+    response.status_code = 200
+
+    return response
