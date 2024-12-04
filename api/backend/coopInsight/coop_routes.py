@@ -139,7 +139,7 @@ def get_job_listings():
     return the_response
 
 
-@coop.route('/jobListingDetails')
+@coop.route('/jobListingDetails', methods=['GET'])
 def get_specific_listing():
     
     user = request.form
@@ -294,6 +294,8 @@ def get_student_specific_offers():
             WHERE ApplicantID = '{applicantID}'
             '''
     
+    debug(query)
+    
     cursor.execute(query)
 
     theData = cursor.fetchall()
@@ -367,7 +369,7 @@ def reset_offer():
 
     db.get_db().commit()
 
-    theResponse = make_response('Rejected!')
+    theResponse = make_response('Reset!')
     theResponse.status_code = 200
 
     return theResponse
@@ -518,3 +520,27 @@ def make_an_offer():
     response.status_code = 200
 
     return response
+
+@coop.route('/updateApplicant', methods=['PUT'])
+def update_applicant():
+
+    user = request.form
+
+    appID = user['ApplicantID']
+
+    query = f'''
+            UPDATE Applicant
+            SET Status = 'Offered'
+            WHERE ApplicantID = '{appID}'
+            '''
+    
+    cursor = db.get_db().cursor()
+
+    cursor.execute(query)
+
+    db.get_db().commit()
+
+    theResponse = make_response('Accepted!')
+    theResponse.status_code = 200
+
+    return theResponse

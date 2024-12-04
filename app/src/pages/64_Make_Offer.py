@@ -14,6 +14,7 @@ st.session_state['EndDate'] = st.date_input("End Date: ", min_value= st.session_
 if st.button(label= "Make this Offer?", use_container_width=True, type='primary'):
 
     requests.put('http://api:4000/coop/makeOffer', data= st.session_state)
+    requests.put('http://api:4000/coop/updateApplicant', data= st.session_state)
 
     firstName = st.session_state['FirstName']
     st.text(f"Successfully made an offer to {firstName}")

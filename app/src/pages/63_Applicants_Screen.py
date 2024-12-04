@@ -26,6 +26,7 @@ if len(event.selection['rows']):
 
     st.session_state['ApplicantID'] = dfApplicants.iloc[selected_row]['ApplicantID']
     st.session_state['JobID'] = dfApplicants.iloc[selected_row]['JobID']
+    st.session_state['StudentID'] = dfApplicants.iloc[selected_row]['StudentID']
 
     dataStudent = requests.get('http://api:4000/coop/getApplicantProfile', data= st.session_state).json()
 
@@ -46,5 +47,6 @@ if len(event.selection['rows']):
 
     firstName = dataUser[0]['FirstName']
     st.session_state['FirstName'] = firstName
+    st.session_state['ApplicantID'] = st.session_state['StudentID']
 
     st.page_link('pages/64_Make_Offer.py', label=f'Make a job offer to {firstName}?')
