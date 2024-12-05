@@ -30,4 +30,3 @@ for index, row in ratings_df.iterrows():
     st.write(f"Learning Opportunities: {row['LearningOpportunitiesRating']}/5")
     st.write(f"Review: {row['Review']}")
     st.write("---")
-
