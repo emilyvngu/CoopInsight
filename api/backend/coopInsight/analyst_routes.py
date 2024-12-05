@@ -52,3 +52,29 @@ def get_job_ratings():
     CompanyID                   INT REFERENCES Company (CompanyID) ON UPDATE CASCADE ON DELETE CASCADE,
     UserID                      INT          NOT NULL REFERENCES User (UserID) ON UPDATE CASCADE ON DELETE CASCADE
 );"""
+
+
+#------------------------------------------------------------
+# Get all jobs and companies
+
+@analyst.route('/companies_jobs', methods=['GET'])
+def get_companies_and_jobs():
+    try:
+        # Get a database cursor
+        cursor = db.get_db().cursor()
+
+        # Query to fetch companies and their jobs
+        query = """
+            SELECT c.CompanyID, c.CompanyName, j.Name AS JobName
+            FROM Company c
+            JOIN JobListing j ON c.CompanyID = j.CompanyID
+            ORDER BY c.CompanyName, j.Name
+        """
+        cursor.execute(query)
+
+        # Fetch results
+        theData = cursor.fetchall()
+
+        the_response = make_response(jsonify(theData))
+        the_response.status_code = 200
+        return the_response
