@@ -48,7 +48,7 @@ def MapDemoNav():
 
 ## ------------------------ Examples for Role of System's Analyst (Sara Lee) ------------------------
 def AnalysisHomeNav():
-    st.sidebar.page_link("pages/70_Systems_Analyst.py", label="Job Analysis", icon="🛜")
+    st.sidebar.page_link("pages/70_Systems_Analyst.py", label="Analyst HomePage", icon="🛜")
 
 
 def IndustryAnalysisNav():
