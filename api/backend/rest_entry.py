@@ -5,6 +5,7 @@ from backend.customers.customer_routes import customers
 from backend.products.products_routes import products
 from backend.simple.simple_routes import simple_routes
 from backend.coopInsight.coop_routes import coop
+from backend.coopInsight.analyst_routes import analyst
 
 import os
 from dotenv import load_dotenv
