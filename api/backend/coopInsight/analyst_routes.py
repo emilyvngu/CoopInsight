@@ -22,22 +22,22 @@ analyst = Blueprint('coop', __name__)
 # Get all jobratings info
 @analyst.route('/jobratings', methods=['GET'])
 def get_job_ratings():
+    try:
+        cursor = db.get_db().cursor()
+        query = """
+            SELECT c.CompanyName, j.Name AS JobName, r.OverallRating, r.WorkCultureRating,
+                r.CompensationRating, r.WorkLifeBalanceRating, r.LearningOpportunitiesRating, r.Review
+            FROM Rating r
+            JOIN JobListing j ON r.JobID = j.JobID
+            JOIN Company c ON r.CompanyID = c.CompanyID
+        """
+        cursor.execute(query)
 
-    cursor = db.get_db().cursor()
-    query = """
-        SELECT c.CompanyName, j.Name AS JobName, r.OverallRating, r.WorkCultureRating,
-               r.CompensationRating, r.WorkLifeBalanceRating, r.LearningOpportunitiesRating, r.Review
-        FROM Rating r
-        JOIN JobListing j ON r.JobID = j.JobID
-        JOIN Company c ON r.CompanyID = c.CompanyID
-    """
-    cursor.execute(query)
+        theData = cursor.fetchall()
 
-    theData = cursor.fetchall()
-
-    the_response = make_response(jsonify(theData))
-    the_response.status_code = 200
-    return the_response
+        the_response = make_response(jsonify(theData))
+        the_response.status_code = 200
+        return the_response
 
 
 #------------------------------------------------------------
