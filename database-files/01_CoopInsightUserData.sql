@@ -102,3 +102,4 @@ insert into User (UserID, FirstName, LastName, Email, Password, PhoneNumber, Acc
 insert into User (UserID, FirstName, LastName, Email, Password, PhoneNumber, AccessLevel) values (99, 'Casey', 'Golborn', 'cgolborn2q@a8.net', 'hN97A($fX', '168-209-7489', 'Admin');
 insert into User (UserID, FirstName, LastName, Email, Password, PhoneNumber, AccessLevel) values (100, 'Meagan', 'Glabach', 'mglabach2r@dyndns.org', 'aP9`ULo|%rR69', '602-134-5398', 'User');
 insert into User (UserID, FirstName, LastName, Email, Password, PhoneNumber, AccessLevel) values (101, 'Jane', 'Lane', 'jl@gmail.com', 'aP9`ULo|%rR69', '602-134-5398', 'User');
+insert into User (UserID, FirstName, LastName, Email, Password, PhoneNumber, AccessLevel) values (102, 'Joe', 'Schmoe', 'js@gmail.com', 'jF5,rqv/)?eip', '119-121-0204', 'User');

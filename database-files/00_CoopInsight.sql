@@ -105,7 +105,8 @@ CREATE TABLE IF NOT EXISTS Offer
     Wage        INT         NOT NULL,
     StartDate   DATETIME    NOT NULL,
     EndDate     DATETIME,
-    Status      VARCHAR(50) NOT NULL DEFAULT 'Pending'
+    Status      VARCHAR(50) NOT NULL DEFAULT 'Pending',
+    OfferDate  DATETIME    NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 CREATE TABLE IF NOT EXISTS ErrorLog
 (
