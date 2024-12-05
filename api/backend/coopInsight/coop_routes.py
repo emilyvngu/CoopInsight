@@ -293,8 +293,10 @@ def get_student_specific_offers():
     cursor = db.get_db().cursor()
 
     query = f'''
-            SELECT *
+            SELECT Offer.*, Company.CompanyName, JobListing.Name as 'Job Title'
             FROM Offer
+            INNER JOIN JobListing ON Offer.JobID = JobListing.JobID
+            INNER JOIN Company ON JobListing.CompanyID = Company.CompanyID
             WHERE ApplicantID = '{applicantID}'
             '''
     
@@ -308,6 +310,55 @@ def get_student_specific_offers():
     the_response.status_code = 200
 
     return the_response
+
+@coop.route('/withdrawOfferFromStudent', methods=['DELETE'])
+def withdraw_offer_from_student():
+    user = request.form
+
+    offerID = user['OfferID']
+
+    query = f'''
+            DELETE FROM Offer
+            WHERE OfferID = '{offerID}'
+            '''
+
+    cursor = db.get_db().cursor()
+
+    cursor.execute(query)
+
+    db.get_db().commit()
+
+    theResponse = make_response('Withdrawn!')
+    theResponse.status_code = 200
+
+    return theResponse
+
+@coop.route('/getCompanyOffers', methods=['GET'])
+def get_company_offers():
+    data = request.form
+
+    CompanyID = data['CompanyID']
+
+    cursor = db.get_db().cursor()
+
+    query = f'''
+            SELECT Offer.*, User.UserID, User.FirstName, User.LastName, JobListing.Name as JobListing, JobListing.JobID
+            FROM Offer
+            NATURAL JOIN JobListing
+            INNER JOIN Student ON Offer.ApplicantID = Student.StudentID
+            INNER JOIN User ON Student.UserID = User.UserID
+            WHERE CompanyID = '{CompanyID}'
+            ORDER BY OfferDate DESC
+            '''
+
+    cursor.execute(query)
+
+    theData = cursor.fetchall()
+
+    theResponse = make_response(jsonify(theData))
+    theResponse.status_code = 200
+
+    return theResponse
 
 @coop.route('/acceptOffer', methods=['PUT'])
 def accept_offer():
@@ -378,15 +429,16 @@ def reset_offer():
 
     return theResponse
 
-@coop.route('/getCompanyID', methods=['GET'])
+@coop.route('/getEmployeeCompany', methods=['GET'])
 def get_employee_company():
     user = request.form
 
     employeeID = user['EmployeeID']
 
     query = f'''
-            SELECT CompanyID
+            SELECT Employee.CompanyID, CompanyName
             FROM Employee
+            INNER JOIN Company ON Employee.CompanyID = Company.CompanyID
             WHERE EmployeeID = '{employeeID}'
             '''
     
@@ -432,8 +484,10 @@ def get_company_job_applicants():
     jobID = user['JobID']
 
     query = f'''
-            SELECT *
+            SELECT Applicant.ApplicantID, Applicant.JobID, Applicant.Status, Student.*, User.FirstName, User.LastName
             FROM Applicant
+            NATURAL JOIN Student
+            NATURAL JOIN User
             WHERE JobID = '{jobID}'
             '''
     
@@ -596,6 +650,149 @@ def post_job_offer():
     theResponse.status_code = 200
 
     return theResponse
+
+
+@coop.route('/hireStudent', methods=['POST'])
+def hire_student():
+    data = request.form
+
+    offer_id = data['OfferID']
+    applicant_id = data['ApplicantID']
+
+
+    query = f'''
+            UPDATE Applicant
+            SET Status = 'Hired'
+            WHERE ApplicantID = '{applicant_id}'
+            '''
+
+    cursor = db.get_db().cursor()
+
+    cursor.execute(query)
+
+    query = f'''
+            DELETE FROM Offer
+            WHERE OfferID = '{offer_id}'
+            '''
+
+    cursor.execute(query)
+
+    query = f'''
+        INSERT INTO Employee (UserID, CompanyID, JobID)
+        VALUES ('{data['HireID']}', '{data['CompanyID']}', '{data['JobID']}')
+        '''
+
+    cursor.execute(query)
+
+    db.get_db().commit()
+
+    theResponse = make_response('Hired!')
+    theResponse.status_code = 200
+
+    return theResponse
+
+
+@coop.route('/getEmployeeInfo', methods=['GET'])
+def get_employee_info():
+    data = request.form
+
+    user_id = data['UserID']
+
+    query = f'''
+            SELECT EmployeeID, Company.CompanyID, JobID, CompanyName
+            FROM Employee
+            INNER JOIN Company ON Employee.CompanyID = Company.CompanyID
+            WHERE UserID = '{user_id}'
+            '''
+
+    cursor = db.get_db().cursor()
+
+    cursor.execute(query)
+
+    theData = cursor.fetchall()
+
+    if len(theData) == 0:
+        resp = make_response('No Employee Found')
+        resp.status_code = 404
+        return resp
+
+    the_response = make_response(jsonify(theData))
+    the_response.status_code = 200
+
+    return the_response
+
+
+@coop.route('/resign', methods=['DELETE'])
+def resign():
+    data = request.form
+
+    employee_id = data['EmployeeID']
+
+    query = f'''
+            DELETE FROM Employee
+            WHERE EmployeeID = '{employee_id}'
+            '''
+
+    cursor = db.get_db().cursor()
+
+    cursor.execute(query)
+
+    db.get_db().commit()
+
+    theResponse = make_response('Resigned!')
+    theResponse.status_code = 200
+
+    return theResponse
+
+
+@coop.route('/getEmployees', methods=['GET'])
+def get_employees():
+    data = request.form
+
+    companyID = data['CompanyID']
+
+    query = f'''
+            SELECT Employee.EmployeeID, User.FirstName, User.LastName, JobListing.Name as JobListing
+            FROM Employee
+            INNER JOIN User ON Employee.UserID = User.UserID
+            INNER JOIN JobListing ON Employee.JobID = JobListing.JobID
+            WHERE Employee.CompanyID = '{companyID}'
+            '''
+
+    cursor = db.get_db().cursor()
+
+    cursor.execute(query)
+
+    theData = cursor.fetchall()
+
+    the_response = make_response(jsonify(theData))
+    the_response.status_code = 200
+
+    return the_response
+
+
+@coop.route('/terminateEmployee', methods=['DELETE'])
+def terminate_employee():
+    data = request.form
+
+    employeeID = data['EmployeeID']
+
+    query = f'''
+            DELETE FROM Employee
+            WHERE EmployeeID = '{employeeID}'
+            '''
+
+    cursor = db.get_db().cursor()
+
+    cursor.execute(query)
+
+    db.get_db().commit()
+
+    theResponse = make_response('Terminated!')
+    theResponse.status_code = 200
+
+    return theResponse
+
 
 #     CREATE TABLE IF NOT EXISTS JobListing
 # (
