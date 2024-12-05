@@ -51,15 +51,15 @@ def AnalysisHomeNav():
     st.sidebar.page_link("pages/70_Systems_Analysis.py", label="Job Analysis", icon="🛜")
 
 
-def PredictionNav():
+def IndustryAnalysisNav():
     st.sidebar.page_link(
         "pages/72_Industry_Analysis.py", label="Industry Analysis", icon="📈"
     )
 
 
-def ClassificationNav():
+def JobAnalysisNav():
     st.sidebar.page_link(
-        "pages/13_Classification.py", label="Classification Demo", icon="🌺"
+        "pages/71_Job_Analysis.py", label="Job Analysis", icon="🌺"
     )
 
 
@@ -99,10 +99,10 @@ def SideBarLinks(show_home=False):
             StudentOffersNav()
 
         # If the user role is usaid worker, show the Api Testing page
-        if st.session_state["role"] == "usaid_worker":
-            PredictionNav()
-            ApiTestNav()
-            ClassificationNav()
+        if st.session_state["role"] == "analyst":
+            AnalysisHomeNav()
+            IndustryAnalysisNav()
+            JobAnalysisNav()
 
         # If the user is an administrator, give them access to the administrator pages
         if st.session_state["role"] == "administrator":
