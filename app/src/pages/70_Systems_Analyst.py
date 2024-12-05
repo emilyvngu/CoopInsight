@@ -3,6 +3,7 @@ logger = logging.getLogger(__name__)
 
 import streamlit as st
 from modules.nav import SideBarLinks
+import requests
 
 st.set_page_config(layout = 'wide')
 
@@ -10,18 +11,36 @@ st.set_page_config(layout = 'wide')
 SideBarLinks()
 
 name = st.session_state['username']
-st.title('Systems Analyst Dashboard')
-st.write(f"Welcome, {name}.")
-st.write('')
-st.write('')
-st.write('### What would you like to do today?')
 
-if st.button('View World Bank Data Visualization', 
-             type='primary',
-             use_container_width=True):
-  st.switch_page('pages/01_World_Bank_Viz.py')
+# Set up the base URL for the Flask backend
+BASE_URL = "http://localhost:4000"  # Replace with your Flask server's URL
 
-if st.button('View World Map Demo', 
-             type='primary',
-             use_container_width=True):
-  st.switch_page('pages/02_Map_Demo.py')
+def fetch_job_ratings():
+    """
+    Fetch job ratings data from the Flask backend.
+    """
+    try:
+        # Make a GET request to the Flask route
+        response = requests.get(f"{BASE_URL}/jobratings")
+
+        # Check if the request was successful
+        if response.status_code == 200:
+            return response.json()  # Return JSON data
+        else:
+            st.error(f"Failed to fetch data: {response.status_code} - {response.text}")
+            return None
+    except requests.exceptions.RequestException as e:
+        st.error(f"Error fetching data: {e}")
+        return None
+
+# Streamlit app layout
+st.title("Job Ratings Dashboard")
+
+# Fetch data
+data = fetch_job_ratings()
+
+# Display data if available
+if data:
+    st.write("### Job Ratings Data")
+    for entry in data:
+        st.write(entry)  # Display each entry

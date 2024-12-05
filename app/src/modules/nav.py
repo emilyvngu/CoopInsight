@@ -47,13 +47,13 @@ def MapDemoNav():
 
 
 ## ------------------------ Examples for Role of System's Analyst (Sara Lee) ------------------------
-def ApiTestNav():
-    st.sidebar.page_link("pages/12_API_Test.py", label="Test the API", icon="🛜")
+def AnalysisHomeNav():
+    st.sidebar.page_link("pages/70_Systems_Analysis.py", label="Job Analysis", icon="🛜")
 
 
 def PredictionNav():
     st.sidebar.page_link(
-        "pages/11_Prediction.py", label="Regression Prediction", icon="📈"
+        "pages/72_Industry_Analysis.py", label="Industry Analysis", icon="📈"
     )
 
 
