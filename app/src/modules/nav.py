@@ -16,7 +16,7 @@ def AboutPageNav():
 #### ------------------------ Examples for Role of Student (Joe Schmoe) ------------------------
 def StudentHomeNav():
     st.sidebar.page_link(
-        "pages/00_Pol_Strat_Home.py", label="Student Home", icon="👤"
+        "pages/50_Student_Home.py", label="Student Home", icon="👤"
     )
 
 def StudentJobListNav():
