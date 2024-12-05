@@ -38,7 +38,7 @@ def fetch_job_ratings(company_id):
         response = requests.get(f"{BASE_URL}/jobratings")
         response.raise_for_status()
         df = pd.DataFrame(response.json())
-        return df[df['company_id'] = company_id]
+        return df[df['company_id'] == company_id]
     except requests.exceptions.RequestException as e:
         st.error(f"Error fetching job ratings: {e}")
         logger.error(f"Error fetching job ratings: {e}")
@@ -69,7 +69,7 @@ if not companies_jobs_df.empty:
             
             # Button to fetch ratings for the selected company
             if st.button(f"View Ratings for {job_name} at {company_name}", key=company_id):
-                ratings_df = fetch_job_ratings()
+                ratings_df = fetch_job_ratings(company_id)
 
                 if not ratings_df.empty:
                     st.write(f"## Ratings for {company_name} - {job_name}")
