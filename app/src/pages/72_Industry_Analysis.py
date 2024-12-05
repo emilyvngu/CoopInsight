@@ -15,5 +15,5 @@ st.set_page_config(layout="wide", page_title="Job Ratings Dashboard")
 SideBarLinks()
 
 # Base URL for the Flask backend
-BASE_URL = "http://localhost:8501" 
+BASE_URL = "http://localhost:5000" 
 
