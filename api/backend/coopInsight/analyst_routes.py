@@ -21,7 +21,7 @@ analyst = Blueprint('coop', __name__)
 #------------------------------------------------------------
 # Get all jobratings info
 @analyst.route('/jobratings', methods=['GET'])
-def get_job_ratings(company_id):
+def get_job_ratings():
 
     cursor = db.get_db().cursor()
     query = """
