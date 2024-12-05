@@ -16,7 +16,7 @@ st.set_page_config(layout="wide", page_title="Job Ratings Dashboard")
 SideBarLinks()
 
 # Base URL for the Flask backend
-BASE_URL = "http://localhost:4000/analyst"
+BASE_URL = "http://api:4000/analyst"
 
 def fetch_data(endpoint, params=None):
     try:
