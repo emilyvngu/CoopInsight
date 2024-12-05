@@ -15,7 +15,7 @@ from backend.ml_models.model01 import predict
 
 #------------------------------------------------------------
 # Create a new Blueprint object
-analyst = Blueprint('coop', __name__)
+analyst = Blueprint('analyst', __name__)
 
 
 #------------------------------------------------------------
