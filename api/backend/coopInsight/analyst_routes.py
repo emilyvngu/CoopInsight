@@ -30,7 +30,6 @@ def get_job_ratings(company_id):
         FROM Rating r
         JOIN JobListing j ON r.JobID = j.JobID
         JOIN Company c ON r.CompanyID = c.CompanyID
-        WHERE c.CompanyID = %s
     """
     cursor.execute(query)
 
@@ -39,3 +38,17 @@ def get_job_ratings(company_id):
     the_response = make_response(jsonify(theData))
     the_response.status_code = 200
     return the_response
+
+"""
+(
+    RatingID                    INT PRIMARY KEY AUTO_INCREMENT,
+    OverallRating               INT          NOT NULL,
+    Review                      VARCHAR(500) NOT NULL,
+    WorkCultureRating           INT          NOT NULL,
+    CompensationRating          INT          NOT NULL,
+    WorkLifeBalanceRating       INT          NOT NULL,
+    LearningOpportunitiesRating INT          NOT NULL,
+    JobID                       INT REFERENCES JobListing (JobID) ON UPDATE CASCADE ON DELETE CASCADE,
+    CompanyID                   INT REFERENCES Company (CompanyID) ON UPDATE CASCADE ON DELETE CASCADE,
+    UserID                      INT          NOT NULL REFERENCES User (UserID) ON UPDATE CASCADE ON DELETE CASCADE
+);"""
