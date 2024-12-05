@@ -2,6 +2,9 @@
 # Sample customers blueprint of endpoints
 # Remove this file if you are not using it in your project
 ########################################################
+import logging
+logging.basicConfig(format='%(filename)s:%(lineno)s:%(levelname)s -- %(message)s', level=logging.INFO)
+logger = logging.getLogger(__name__)
 import sys
 from flask import Blueprint
 from flask import request
@@ -246,6 +249,7 @@ def apply_to_job():
     studentID = user['StudentID']
 
     cursor = db.get_db().cursor()
+    logger.info(f'Applying to job {jobID} as student {studentID}')
 
     query = f'''
             INSERT INTO
