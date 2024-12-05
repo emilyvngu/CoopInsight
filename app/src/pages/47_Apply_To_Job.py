@@ -47,5 +47,10 @@ if st.button("Apply to job?", type='primary', use_container_width=True):
     resp = requests.put('http://api:4000/coop/applyToJob', data= st.session_state)
     if resp.status_code == 200:
         st.text("Successfully applied to " + str(st.session_state['jobName']) + " as student: " + str(st.session_state['StudentID']) + ": " + st.session_state['username'])
+    elif resp.status_code == 409:
+        st.text("Already applied to job: " + str(st.session_state['jobName']) + " as student: " + str(st.session_state['StudentID']) + ": " + st.session_state['username'])
     else:
         st.text(f"Failed to apply to job: {resp.status_code}")
+
+if st.button("Return to Job Listings", type='primary', use_container_width=True):
+    st.switch_page('pages/45_User_Job_Listings_Home.py')
