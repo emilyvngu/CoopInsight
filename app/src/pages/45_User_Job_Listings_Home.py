@@ -30,3 +30,6 @@ if len(event.selection['rows']):
 
     #st.page_link('pages/46_Detail_Job.py', label=f'Go to {jobName} Details')
     st.page_link('pages/47_Apply_To_Job.py', label=f'Apply to {jobName}')
+
+if st.button('Go Home', type='secondary'):
+    st.switch_page('pages/50_Student_Home.py')

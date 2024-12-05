@@ -12,7 +12,7 @@ data = requests.get('http://api:4000/coop/studentSpecificOffers', data= st.sessi
 
 df = pd.DataFrame(data)
 #df = df[['JobID', 'Wage', 'StartDate', 'EndDate', 'Status']]
-df = df[['JobID', 'OfferID', 'StartDate', 'EndDate', 'Wage', 'Status']]
+df = df[['JobID', 'OfferID', 'CompanyName', 'StartDate', 'EndDate', 'Wage', 'Status']]
 st.title('Offer Acceptance Board')
 
 event = st.dataframe(
