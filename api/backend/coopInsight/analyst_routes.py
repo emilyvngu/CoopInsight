@@ -38,6 +38,11 @@ def get_job_ratings():
         the_response = make_response(jsonify(theData))
         the_response.status_code = 200
         return the_response
+    
+    except Exception as e:
+        # Log the error and return a 500 response
+        logger.error(f"Error fetching job ratings: {e}")
+        return make_response(jsonify({"error": "An error occurred while fetching job ratings."}))
 
 
 #------------------------------------------------------------
@@ -64,3 +69,8 @@ def get_companies_and_jobs():
         the_response = make_response(jsonify(theData))
         the_response.status_code = 200
         return the_response
+    
+    except Exception as e:
+        # Log the error and return a 500 response
+        logger.error(f"Error fetching jobs: {e}")
+        return make_response(jsonify({"error": "An error occurred while fetching jobs."}))
