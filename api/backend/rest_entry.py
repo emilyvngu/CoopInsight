@@ -42,6 +42,7 @@ def create_app():
     app.logger.info('current_app(): registering blueprints with Flask app object.')   
     app.register_blueprint(coop, url_prefix="/coop")
     app.register_blueprint(analyst, url_prefix="/analyst")
+    app.register_blueprint(analyst, url_prefix="/admin")
 
     # Don't forget to return the app object
     return app
