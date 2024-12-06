@@ -177,7 +177,7 @@ def get_companies_in_jobs():
 
 #------------------------------------------------------------
 @analyst.route('/company_available_positions', methods=['GET'])
-def get_available_positions():
+def get_company_available_positions():
     """
     Fetch the number of job listings for each industry.
     """
@@ -186,10 +186,10 @@ def get_available_positions():
 
     # Query to fetch job count grouped by industry
     query = """
-        SELECT i.IndustryName, COUNT(j.JobID) AS JobCount
+        SELECT c.CompanyName, COUNT(j.JobID) AS JobCount
         FROM JobListing j
-        JOIN Industry i ON j.IndustryID = i.IndustryID
-        GROUP BY i.IndustryName
+        JOIN Company c ON c.CompanyID = j.CompanyID
+        GROUP BY c.CompanyName
         ORDER BY JobCount DESC
     """
     cursor.execute(query)
@@ -203,7 +203,7 @@ def get_available_positions():
 
 #------------------------------------------------------------
 @analyst.route('/skills_with_companies', methods=['GET'])
-def get_skills_with_industries():
+def get_skills_with_companies():
     """
     Fetch the demand for each skill grouped by companies.
     """
