@@ -118,3 +118,4 @@ if not companies_jobs_df.empty:
         st.warning("No results match your search query.")
 else:
     st.warning("No data available.")
+    

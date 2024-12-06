@@ -15,9 +15,6 @@ st.set_page_config(layout="wide", page_title="Industry Trends Dashboard")
 # Display the appropriate sidebar links for the role of the logged-in user
 SideBarLinks()
 
-# Base URL for the Flask backend
-BASE_URL = "http://api:4000/analyst"
-
 # Dashboard Layout
 st.title("Industry Trends Dashboard")
 
