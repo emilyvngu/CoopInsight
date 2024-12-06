@@ -52,37 +52,6 @@ def fetch_available_positions(industry):
         logger.error(f"Error fetching available positions: {e}")
         return None
 
-
-def fetch_top_skills(industry):
-    """
-    Fetch the top skills in demand for the selected industry.
-    """
-    try:
-        response = requests.get(f"{BASE_URL}/top_skills/{industry}")
-        response.raise_for_status()
-        return response.json()["TopSkills"]
-    except requests.exceptions.RequestException as e:
-        st.error(f"Error fetching top skills: {e}")
-        logger.error(f"Error fetching top skills: {e}")
-        return None
-
-
-def fetch_application_success_rate(industry):
-    """
-    Fetch the application success rate for the selected industry.
-    """
-    try:
-        response = requests.get(f"{BASE_URL}/application_success_rate/{industry}")
-        response.raise_for_status()
-        return response.json()["ApplicationSuccessRate"]
-    except requests.exceptions.RequestException as e:
-        st.error(f"Error fetching application success rate: {e}")
-        logger.error(f"Error fetching application success rate: {e}")
-        return None
-
-# Select Industry
-industry = st.selectbox("Select Industry", ["All Industries"] + industries_list["IndustryName"].tolist())
-
 # Fetch Data and Populate Widgets
 if st.button("Fetch Industry Trends"):
     st.write(f"### Industry Trends for {industry}")
