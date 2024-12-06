@@ -13,7 +13,7 @@ st.markdown(
     """
     ## About CoopInsight
 
-    Welcome to **CoopInsight**, a project developed for the CS 3200 Course - Fall 2024.  
+    Welcome to **CoopInsight** 
     This application serves as a data-driven platform to enhance the co-op experience for Northeastern students, employers, and university administrators.
 
     ### Project Features:
@@ -36,7 +36,7 @@ st.markdown(
     CoopInsight revolutionizes the co-op experience by providing detailed insights into job opportunities based on actual student data. It empowers students, employers, and university staff with tools to make informed decisions, ensuring fairness, transparency, and efficiency in the co-op search process.
 
     ### User Personas:
-    - **Joe Shmoe (Student)**: Navigating the co-op search process with tools to filter jobs, connect with alumni, and rate employers.  
+    - **Joe Shmoe (Student)**: Navigating the co-op search process with tools to filter jobs, and rate employers.  
     - **Jane Lane (Employer)**: Efficiently filtering and hiring candidates with data-backed insights.  
     - **Sara Lee (Northeastern Systems Analyst)**: Using data trends to optimize co-op opportunities.  
     - **President Aoun (System Administrator)**: Managing database integrity, troubleshooting issues, and ensuring optimal system performance.
