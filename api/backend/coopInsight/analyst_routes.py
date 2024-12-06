@@ -79,44 +79,44 @@ def get_companies_and_jobs():
 # Get all industries already in job listings
 @analyst.route('/industries_in_jobs', methods=['GET'])
 def get_industries_in_jobs():
-    try:
-        cursor = db.get_db().cursor()
+    
+    cursor = db.get_db().cursor()
 
-        # Query to fetch industries with job listings
-        query = """
-            SELECT DISTINCT i.IndustryID, i.IndustryName
-            FROM Industry i
-            JOIN JobListing j ON i.IndustryID = j.IndustryID
-            ORDER BY i.IndustryName
-        """
-        cursor.execute(query)
+    # Query to fetch industries with job listings
+    query = """
+        SELECT DISTINCT i.IndustryID, i.IndustryName
+        FROM Industry i
+        JOIN JobListing j ON i.IndustryID = j.IndustryID
+        ORDER BY i.IndustryName
+    """
+    cursor.execute(query)
 
-        theData = cursor.fetchall()
+    theData = cursor.fetchall()
 
-        response = make_response(jsonify(theData))
-        response.status_code = 200
-        return response
+    response = make_response(jsonify(theData))
+    response.status_code = 200
+    return response
 
 @analyst.route('/available_positions', methods=['GET'])
 def get_available_positions():
     """
     Fetch the number of job listings for each industry.
     """
-    try:
-        cursor = db.get_db().cursor()
+    
+    cursor = db.get_db().cursor()
 
-        # Query to fetch job count grouped by industry
-        query = """
-            SELECT i.IndustryName, COUNT(j.JobID) AS JobCount
-            FROM JobListing j
-            JOIN Industry i ON j.IndustryID = i.IndustryID
-            GROUP BY i.IndustryName
-            ORDER BY JobCount DESC
-        """
-        cursor.execute(query)
+    # Query to fetch job count grouped by industry
+    query = """
+        SELECT i.IndustryName, COUNT(j.JobID) AS JobCount
+        FROM JobListing j
+        JOIN Industry i ON j.IndustryID = i.IndustryID
+        GROUP BY i.IndustryName
+        ORDER BY JobCount DESC
+    """
+    cursor.execute(query)
 
-        theData = cursor.fetchall()
+    theData = cursor.fetchall()
 
-        response = make_response(jsonify(theData))
-        response.status_code = 200
-        return response
+    response = make_response(jsonify(theData))
+    response.status_code = 200
+    return response
