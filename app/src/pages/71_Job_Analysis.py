@@ -40,9 +40,6 @@ def fetch_job_ratings(company_name, job_name):
         response.raise_for_status()
         df = pd.DataFrame(response.json())
 
-        # Log the raw data
-        st.write("Raw DataFrame from API:")
-
         # Normalize column values to avoid case and whitespace issues
         df['CompanyName'] = df['CompanyName'].str.strip().str.lower()
         df['JobName'] = df['JobName'].str.strip().str.lower()
