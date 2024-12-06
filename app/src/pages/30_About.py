@@ -44,5 +44,5 @@ st.markdown(
     Stay tuned for more updates and interactive features to improve the co-op experience for everyone involved!
     """
 )
-
-st.page_link("app/src/Home.py", label="Go Back to Home")
+if st.button("Go Back to Home"):
+    st.page_link("app/src/Home.py", label="Go Back to Home")
