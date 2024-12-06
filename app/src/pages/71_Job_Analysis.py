@@ -9,7 +9,7 @@ import pandas as pd
 logger = logging.getLogger(__name__)
 
 # Set Streamlit page configuration
-st.set_page_config(layout="wide", page_title="Job Ratings Dashboard")
+st.set_page_config(layout="wide", page_title="Job Analysis Dashboard")
 
 # Display the appropriate sidebar links for the role of the logged-in user
 SideBarLinks()
