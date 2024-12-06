@@ -38,7 +38,7 @@ def fetch_job_ratings(company_name, job_name):
         response = requests.get(f"{BASE_URL}/jobratings")
         response.raise_for_status()
         df = pd.DataFrame(response.json())
-        return df[df['CompanyName'] == company_name & df['JobName'] == job_name]
+        return df[(df['CompanyName'] == company_name) & (df['JobName'] == job_name)]
     except requests.exceptions.RequestException as e:
         st.error(f"Error fetching job ratings: {e}")
         logger.error(f"Error fetching job ratings: {e}")
