@@ -1,25 +1,27 @@
 USE CoopInsight;
 
-insert into Industry (IndustryID, IndustryName) values (1, 'Finance: Consumer Services');
-insert into Industry (IndustryID, IndustryName) values (2, 'Real Estate Investment Trusts');
-insert into Industry (IndustryID, IndustryName) values (3, 'Professional Services');
-insert into Industry (IndustryID, IndustryName) values (4, 'Healthcare Providers');
-insert into Industry (IndustryID, IndustryName) values (5, 'Consumer Specialties');
-insert into Industry (IndustryID, IndustryName) values (6, 'Packaged Foods');
-insert into Industry (IndustryID, IndustryName) values (7, 'Biotechnology');
-insert into Industry (IndustryID, IndustryName) values (8, 'Telecommunications Equipment');
-insert into Industry (IndustryID, IndustryName) values (9, 'Investment Managers');
-insert into Industry (IndustryID, IndustryName) values (10, 'Home Furnishings');
-insert into Industry (IndustryID, IndustryName) values (11, 'Savings Institutions');
-insert into Industry (IndustryID, IndustryName) values (12, 'Education');
-insert into Industry (IndustryID, IndustryName) values (13, 'Precious Metals');
-insert into Industry (IndustryID, IndustryName) values (14, 'Semiconductor Investment Trusts');
-insert into Industry (IndustryID, IndustryName) values (15, 'Major Banks');
-insert into Industry (IndustryID, IndustryName) values (16, 'Building Materials');
-insert into Industry (IndustryID, IndustryName) values (17, 'Automotive Aftermarket');
-insert into Industry (IndustryID, IndustryName) values (18, 'Portable Cameras');
-insert into Industry (IndustryID, IndustryName) values (19, 'Major Pharmaceuticals');
-insert into Industry (IndustryID, IndustryName) values (20, 'Computer Software: Prepackaged Software');
-insert into Industry (IndustryID, IndustryName) values (21, 'Other Consumer Services');
-insert into Industry (IndustryID, IndustryName) values (22, 'Minor Banks');
-insert into Industry (IndustryID, IndustryName) values (23, 'Local Banking');
+INSERT INTO Industry (IndustryID, IndustryName)
+VALUES
+    (1, 'Finance: Consumer Services'),
+    (2, 'Real Estate Investment Trusts'),
+    (3, 'Professional Services'),
+    (4, 'Healthcare Providers'),
+    (5, 'Consumer Specialties'),
+    (6, 'Packaged Foods'),
+    (7, 'Biotechnology'),
+    (8, 'Telecommunications Equipment'),
+    (9, 'Investment Managers'),
+    (10, 'Home Furnishings'),
+    (11, 'Savings Institutions'),
+    (12, 'Education'),
+    (13, 'Precious Metals'),
+    (14, 'Semiconductor Investment Trusts'),
+    (15, 'Major Banks'),
+    (16, 'Building Materials'),
+    (17, 'Automotive Aftermarket'),
+    (18, 'Portable Cameras'),
+    (19, 'Major Pharmaceuticals'),
+    (20, 'Computer Software: Prepackaged Software'),
+    (21, 'Other Consumer Services'),
+    (22, 'Minor Banks'),
+    (23, 'Local Banking');
