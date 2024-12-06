@@ -1,6 +1,5 @@
 ########################################################
-# Sample customers blueprint of endpoints
-# Remove this file if you are not using it in your project
+# Coop blueprint of endpoints
 ########################################################
 import logging
 logging.basicConfig(format='%(filename)s:%(lineno)s:%(levelname)s -- %(message)s', level=logging.INFO)

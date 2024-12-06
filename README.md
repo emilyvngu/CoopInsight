@@ -6,7 +6,7 @@ through a streamlined app.
 
 ## Software Used
 
-Frontend: Streamlit
-Backend: Flask
-Database: MySQL
-Container: Docker
+Frontend: Streamlit  
+Backend: Flask  
+Database: MySQL  
+Container: Docker  
