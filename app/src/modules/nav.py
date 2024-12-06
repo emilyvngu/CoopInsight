@@ -36,25 +36,25 @@ def EmployerHomeNav():
     )
 
 def JobListingsNav():
-    st.sidebar.page_link("pages/62_Job_Listings.py", label="View Job Listings", icon="🗺️"
+    st.sidebar.page_link("pages/62_Job_Listings.py", label="View Job Listings", icon="📋"
     )
 
 def CurrentOffersNav():
-    st.sidebar.page_link("pages/65_Current_Offers.py", label="View Current Offers", icon="🗺️"
+    st.sidebar.page_link("pages/65_Current_Offers.py", label="View Current Offers", icon="🔖"
     )
 
 def MakeOffersNav():
-    st.sidebar.page_link("pages/61_Job_Post.py", label="Post An Offering", icon="🗺️"
+    st.sidebar.page_link("pages/61_Job_Post.py", label="Post An Offering", icon="🤳"
     )
 
 def ViewEmployeesNav():
     st.sidebar.page_link(
-        "pages/66_Current_Employees.py", label="View Current Employees", icon="🏦"
+        "pages/66_Current_Employees.py", label="View Current Employees", icon="🧑‍✈️"
     )
 
 ## ------------------------ Examples for Role of System's Analyst (Sara Lee) ------------------------
 def AnalysisHomeNav():
-    st.sidebar.page_link("pages/70_Systems_Analyst.py", label="Analyst HomePage", icon="🛜")
+    st.sidebar.page_link("pages/70_Systems_Analyst.py", label="Analyst HomePage", icon="👤")
 
 
 def IndustryAnalysisNav():
@@ -65,18 +65,18 @@ def IndustryAnalysisNav():
 
 def JobAnalysisNav():
     st.sidebar.page_link(
-        "pages/71_Job_Analysis.py", label="Job Analysis", icon="🌺"
+        "pages/71_Job_Analysis.py", label="Job Analysis", icon="📊"
     )
 
 def CompanyAnalysisNav():
     st.sidebar.page_link(
-        "pages/73_Company_Analysis.py", label="Company Analysis", icon="🌺"
+        "pages/73_Company_Analysis.py", label="Company Analysis", icon="📉"
     )
 
 
 #### ------------------------ System Admin Role ------------------------
 def AdminPageNav():
-    st.sidebar.page_link("pages/20_Admin_Home.py", label="System Admin", icon="🖥️")
+    st.sidebar.page_link("pages/20_Admin_Home.py", label="System Admin", icon="👤")
     st.sidebar.page_link(
         "pages/21_ML_Model_Mgmt.py", label="ML Model Management", icon="🏢"
     )
