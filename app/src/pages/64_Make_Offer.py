@@ -11,6 +11,7 @@ SideBarLinks()
 # Page title
 st.title("Post an Offering")
 
+st.write("heysdfsdafsdf")
 # Input fields for the job offering
 st.session_state['Position'] = st.text_input("Position:", placeholder="Enter the job title")
 st.session_state['MinGPA'] = st.number_input("Minimum GPA:", min_value=1.0, max_value=4.0, step=0.1, value=1.0)
