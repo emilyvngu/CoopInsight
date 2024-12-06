@@ -19,6 +19,14 @@ admin = Blueprint('admin', __name__)
 
 #------------------------------------------------------------
 # Get all jobratings info
-@admin.route('/jobratings', methods=['GET'])
-def get_job_ratings():
+@admin.route('/error_logs', methods=['GET'])
+def get_error_logs():
+    """
+    Fetch error logs from the system.
+    """
+    query = "SELECT LogID, UserID, ErrorDescription, ErrorDate FROM ErrorLog ORDER BY ErrorDate DESC"
+    cursor = db.get_db().cursor()
+    cursor.execute(query)
+    results = cursor.fetchall()
+    return jsonify([dict(zip([col[0] for col in cursor.description], row)) for row in results]), 200
     
