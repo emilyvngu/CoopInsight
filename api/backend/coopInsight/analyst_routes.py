@@ -175,3 +175,34 @@ def get_companies_in_jobs():
     return response
 
 #------------------------------------------------------------
+@analyst.route('/applicant_count_by_industry', methods=['GET'])
+def get_applicant_count_by_industry():
+    """
+    Get the count of applicants grouped by industry.
+    """
+    try:
+        cursor = db.get_db().cursor()
+
+        # SQL Query to group applicant count by industry
+        query = """
+            SELECT i.IndustryName, COUNT(a.ApplicantID) AS ApplicantCount
+            FROM Applicant a
+            JOIN JobListing j ON a.JobID = j.JobID
+            JOIN Industry i ON j.IndustryID = i.IndustryID
+        """
+        
+        # Execute the query
+        cursor.execute(query)
+        results = cursor.fetchall()
+
+        # Convert results to a list of dictionaries
+        data = [dict(zip([col[0] for col in cursor.description], row)) for row in results]
+
+        return jsonify(data), 200
+
+    except Exception as e:
+        import traceback
+        current_app.logger.error(f"Error fetching applicant counts: {traceback.format_exc()}")
+        return jsonify({"error": str(e)}), 500
+
+#------------------------------------------------------------
