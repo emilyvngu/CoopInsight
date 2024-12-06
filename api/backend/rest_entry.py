@@ -4,6 +4,7 @@ from backend.db_connection import db
 from backend.coopInsight.coop_routes import coop
 from backend.coopInsight.analyst_routes import analyst
 from backend.coopInsight.admin_routes import admin
+from backend.coopInsight.student_routes import student
 
 import os
 from dotenv import load_dotenv
