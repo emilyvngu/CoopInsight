@@ -11,7 +11,8 @@ SideBarLinks()
 data = requests.get('http://api:4000/coop/getCompanyJobListings', data= st.session_state).json()
 
 df = pd.DataFrame(data)
-df = df[['JobID', 'Name', 'Major', 'MinGPA', 'SkillID', 'Posted']]
+if (not df.empty):
+    df = df[['JobID', 'Name', 'Major', 'MinGPA', 'SkillID', 'Posted']]
 st.title('Posted Jobs Board')
 
 event = st.dataframe(

@@ -12,7 +12,8 @@ data = requests.get('http://api:4000/coop/getJobRatings', data= st.session_state
 jobName = st.session_state['JobName']
 
 df = pd.DataFrame(data)
-df = df[['RatingID', 'OverallRating', 'Review', 'CompensationRating', 'LearningOpportunitiesRating', 'WorkCultureRating', 'WorkLifeBalanceRating']]
+if (not df.empty):
+    df = df[['RatingID', 'OverallRating', 'Review', 'CompensationRating', 'LearningOpportunitiesRating', 'WorkCultureRating', 'WorkLifeBalanceRating']]
 st.title(f'{jobName} Ratings:')
 
 event = st.dataframe(
