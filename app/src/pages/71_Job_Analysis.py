@@ -99,7 +99,9 @@ if not companies_jobs_df.empty:
         for _, row in filtered_df.iterrows():
             company_id = row["CompanyID"]
             company_name = row["CompanyName"]
+            st.write(company_name)
             job_name = row["JobName"]
+            st.write(job_name)
 
             st.write(f"**Company:** {company_name}")
             st.write(f"**Job:** {job_name}")
