@@ -18,66 +18,63 @@ position = st.session_state.get('Position', '')
 st.session_state['MinGPA'] = st.number_input('Minimum GPA:', step=0.01, min_value=1.00, max_value=4.00)
 minGPA = st.session_state.get('MinGPA', 1.00)
 
-# Major Selection/Input
-st.markdown("### Select or Input a Major")
+# Fetch Majors
 try:
     dataMajors = requests.get('http://api:4000/coop/getMajors').json()
     majors = pd.DataFrame(dataMajors)
+    major_list = majors['Major'].tolist()
 except Exception as e:
     st.error("Failed to load majors.")
-    majors = pd.DataFrame()
+    major_list = []
 
-if not majors.empty:
-    st.markdown("**Available Majors:**")
-    major_event = st.dataframe(majors, on_select='rerun', selection_mode='single-row', key="majors")
-    if len(major_event.selection['rows']):
-        selected_row = major_event.selection['rows'][0]
-        st.session_state['Major'] = majors.iloc[selected_row]['Major']
+# Dropdown for Major
+st.session_state['Major'] = st.selectbox(
+    "Select a Major:", 
+    options=["-- Enter a Major --"] + major_list, 
+    index=0
+)
+if st.session_state['Major'] == "-- Enter a Major --":
+    st.session_state['Major'] = st.text_input("Or input a major:")
 
-# Allow user to manually input a major
-st.session_state['Major'] = st.text_input("Or input a major:", value=st.session_state.get('Major', ''))
-
-# Industry Selection/Input
-st.markdown("### Select or Input an Industry")
+# Fetch Industries
 try:
     dataIndustries = requests.get('http://api:4000/coop/industry').json()
     industries = pd.DataFrame(dataIndustries)
+    industry_list = industries['IndustryName'].tolist()
 except Exception as e:
     st.error("Failed to load industries.")
-    industries = pd.DataFrame()
+    industry_list = []
 
-if not industries.empty:
-    st.markdown("**Available Industries:**")
-    industry_event = st.dataframe(industries, on_select='rerun', selection_mode='single-row', key="industries")
-    if len(industry_event.selection['rows']):
-        selected_row = industry_event.selection['rows'][0]
-        st.session_state['IndustryName'] = industries.iloc[selected_row]['IndustryName']
-
-# Allow user to manually input an industry
-st.session_state['IndustryName'] = st.text_input("Or input an industry:", value=st.session_state.get('IndustryName', ''))
+# Dropdown for Industry
+st.session_state['IndustryName'] = st.selectbox(
+    "Select an Industry:", 
+    options=["-- Enter an Industry --"] + industry_list, 
+    index=0
+)
+if st.session_state['IndustryName'] == "-- Enter an Industry --":
+    st.session_state['IndustryName'] = st.text_input("Or input an industry:")
 
 # Input: Job Description
 st.session_state['JobDescription'] = st.text_area('Job Description:')
 description = st.session_state.get('JobDescription', '')
 
-# Skill Selection/Input
-st.markdown("### Select or Input a Skill")
+# Fetch Skills
 try:
     dataSkills = requests.get('http://api:4000/coop/skill').json()
     skills = pd.DataFrame(dataSkills)
+    skill_list = skills['SkillName'].tolist()
 except Exception as e:
     st.error("Failed to load skills.")
-    skills = pd.DataFrame()
+    skill_list = []
 
-if not skills.empty:
-    st.markdown("**Available Skills:**")
-    skill_event = st.dataframe(skills, on_select='rerun', selection_mode='single-row', key="skills")
-    if len(skill_event.selection['rows']):
-        selected_row = skill_event.selection['rows'][0]
-        st.session_state['SkillName'] = skills.iloc[selected_row]['SkillName']
-
-# Allow user to manually input a skill
-st.session_state['SkillName'] = st.text_input("Or input a skill:", value=st.session_state.get('SkillName', ''))
+# Dropdown for Skill
+st.session_state['SkillName'] = st.selectbox(
+    "Select a Skill:", 
+    options=["-- Enter a Skill --"] + skill_list, 
+    index=0
+)
+if st.session_state['SkillName'] == "-- Enter a Skill --":
+    st.session_state['SkillName'] = st.text_input("Or input a skill:")
 
 # Job Posting Preview
 st.markdown("### Job Posting Preview")
