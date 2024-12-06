@@ -65,6 +65,19 @@ def fetch_skills():
         logger.error(f"Error fetching available positions: {e}")
         return None
 
+def fetch_application_success_rate(industry):
+    """
+    Fetch the application success rate for the selected industry.
+    """
+    try:
+        response = requests.get(f"{BASE_URL}/application_success_rate/{industry}")
+        response.raise_for_status()
+        return response.json()["ApplicationSuccessRate"]
+    except requests.exceptions.RequestException as e:
+        st.error(f"Error fetching application success rate: {e}")
+        logger.error(f"Error fetching application success rate: {e}")
+        return None
+
 # Fetch Data and Populate Widgets
 if st.button("Fetch Industry Trends"):
     st.write(f"### Industry Trends for {industry}")
@@ -96,4 +109,7 @@ if st.button("Fetch Industry Trends"):
     # Application Success Rate
     success_rate = fetch_application_success_rate(industry)
     if success_rate is not None:
-        st.metric("Application Success Rate", f"{success_rate:.2f}%")
+        st.metric(label="Application Success Rate", value=f"{success_rate:.2f}%")
+    else:
+        st.write("No data available.")
+
