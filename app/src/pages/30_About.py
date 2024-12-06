@@ -44,3 +44,5 @@ st.markdown(
     Stay tuned for more updates and interactive features to improve the co-op experience for everyone involved!
     """
 )
+
+st.page_link("pages/Home.py", label="Go Back to Home")
