@@ -168,8 +168,6 @@ def get_applicant_count_by_industry():
             FROM Applicant a
             JOIN JobListing j ON a.JobID = j.JobID
             JOIN Industry i ON j.IndustryID = i.IndustryID
-            GROUP BY i.IndustryName
-            ORDER BY ApplicantCount DESC
         """
         
         # Execute the query
@@ -207,3 +205,5 @@ def get_companies_in_jobs():
     response = make_response(jsonify(theData))
     response.status_code = 200
     return response
+
+#------------------------------------------------------------

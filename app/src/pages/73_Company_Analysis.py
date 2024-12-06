@@ -35,13 +35,13 @@ def fetch_companies():
         logger.error(f"Error fetching data: {e}")
         return pd.DataFrame()  # Return an empty DataFrame
 
-companies_list = fetch_industries()
-companies_names_only = industries_list['CompanyName']
-company = st.selectbox("Select Industry", companies_names_only)
+companies_list = fetch_companies()
+companies_names_only = companies_list['CompanyName']
+company = st.selectbox("Select Comapny", companies_names_only)
 
 def fetch_available_positions():
     """
-    Fetch the number of available positions for the selected industry.
+    Fetch the number of available positions for the selected Company.
     """
     try:
         response = requests.get(f"{BASE_URL}/available_positions")
@@ -54,7 +54,7 @@ def fetch_available_positions():
 
 def fetch_skills():
     """
-    Fetch the number of available positions for the selected industry.
+    Fetch all skills with its correlating company.
     """
     try:
         response = requests.get(f"{BASE_URL}/skills_with_industries")
@@ -65,22 +65,9 @@ def fetch_skills():
         logger.error(f"Error fetching available positions: {e}")
         return None
 
-def fetch_application_success_rate(industry):
-    """
-    Fetch the application success rate for the selected industry.
-    """
-    try:
-        response = requests.get(f"{BASE_URL}/application_success_rate/{industry}")
-        response.raise_for_status()
-        return response.json()["ApplicationSuccessRate"]
-    except requests.exceptions.RequestException as e:
-        st.error(f"Error fetching application success rate: {e}")
-        logger.error(f"Error fetching application success rate: {e}")
-        return None
-
 # Fetch Data and Populate Widgets
 if st.button("Fetch Industry Trends"):
-    st.write(f"### Industry Trends for {industry}")
+    st.write(f"### Industry Trends for {company}")
 
     # Number of Available Positions
     positions = fetch_available_positions()
