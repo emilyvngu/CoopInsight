@@ -43,6 +43,7 @@ def create_app():
     app.register_blueprint(coop, url_prefix="/coop")
     app.register_blueprint(analyst, url_prefix="/analyst")
     app.register_blueprint(admin, url_prefix="/admin")
+    app.register_blueprint(student, url_prefix="/student")
 
     # Don't forget to return the app object
     return app
