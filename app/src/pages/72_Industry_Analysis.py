@@ -22,21 +22,9 @@ st.title("Industry Trends Dashboard")
 # Average Compensation by Industry
 BASE_URL = "http://api:4000/analyst"
 
-def fetch_industry_compensation(time_period, industry):
-    """
-    Fetch the industry compensation data from the API.
-    """
-    try:
-        # Construct the URL with dynamic parameters
-        url = f"{BASE_URL}/industry_compensation/{time_period}/{industry}"
-        response = requests.get(url)
-        response.raise_for_status()
-        return response.json()  # Return the JSON response
-    except requests.exceptions.RequestException as e:
-        print(f"Error fetching industry compensation: {e}")
-        return None
-
-time_period = st.selectbox("Select Time Period", ["All Time", "Last 12 Months", "Last 6 Months"])
+/industries_in_jobs
+industries_list = 
+time_period = st.selectbox("Select Time Period", industries_list)
 industry = st.text_input("Enter Industry", "All Industries")
 
 if st.button("Fetch Industry Compensation"):
