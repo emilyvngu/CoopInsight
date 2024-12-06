@@ -68,7 +68,6 @@ def fetch_job_ratings(company_name, job_name):
                 "detailed_ratings": detailed_ratings
             }
         else:
-            st.warning(f"No ratings found for {job_name} at {company_name}.")
             return None
     except requests.exceptions.RequestException as e:
         st.error(f"Error fetching job ratings: {e}")
