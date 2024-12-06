@@ -174,6 +174,61 @@ def get_companies_in_jobs():
     response.status_code = 200
     return response
 
+
+#------------------------------------------------------------
+@analyst.route('/company_available_positions', methods=['GET'])
+def get_available_positions():
+    """
+    Fetch the number of job listings for each industry.
+    """
+    
+    cursor = db.get_db().cursor()
+
+    # Query to fetch job count grouped by industry
+    query = """
+        SELECT i.IndustryName, COUNT(j.JobID) AS JobCount
+        FROM JobListing j
+        JOIN Industry i ON j.IndustryID = i.IndustryID
+        GROUP BY i.IndustryName
+        ORDER BY JobCount DESC
+    """
+    cursor.execute(query)
+
+    theData = cursor.fetchall()
+
+    response = make_response(jsonify(theData))
+    response.status_code = 200
+    return response
+
+
+#------------------------------------------------------------
+@analyst.route('/skills_with_companies', methods=['GET'])
+def get_skills_with_industries():
+    """
+    Fetch the demand for each skill grouped by companies.
+    """
+
+    cursor = db.get_db().cursor()
+
+    # Query to fetch skill demand grouped by industry
+    query = """
+        SELECT c.CompanyName, s.SkillName, COUNT(j.SkillID) AS Demand
+        FROM JobListing j 
+        JOIN Company c ON c.CompanyID = j.CompanyID
+        JOIN Skill s ON j.SkillID = s.SkillID
+        GROUP BY c.CompanyName, s.SkillName
+        ORDER BY c.CompanyName, Demand DESC
+    """
+    cursor.execute(query)
+
+    # Fetch all results
+    theData = cursor.fetchall()
+
+    # Convert the results to a JSON response
+    response = make_response(jsonify(theData))
+    response.status_code = 200
+    return response
+
 #------------------------------------------------------------
 @analyst.route('/applicant_count_by_industry', methods=['GET'])
 def get_applicant_count_by_industry():
