@@ -30,6 +30,7 @@ if len(event.selection['rows']):
 
     #st.page_link('pages/46_Detail_Job.py', label=f'Go to {jobName} Details')
     st.page_link('pages/47_Apply_To_Job.py', label=f'Apply to {jobName}')
+    
     st.page_link('pages/49_Flag_Job_Offer.py', label=f'Flag {jobName} for administrator review?')
 
 if st.button('Go Home', type='secondary'):

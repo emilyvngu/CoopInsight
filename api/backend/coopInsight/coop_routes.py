@@ -792,15 +792,26 @@ def terminate_employee():
     return theResponse
 
 
-#     CREATE TABLE IF NOT EXISTS JobListing
-# (
-#     JobID          INT PRIMARY KEY AUTO_INCREMENT,
-#     Name           VARCHAR(50)  NOT NULL,
-#     CompanyID      INT          NOT NULL REFERENCES Company (CompanyID) ON UPDATE CASCADE ON DELETE CASCADE,
-#     Major          VARCHAR(50)  NOT NULL REFERENCES StudentMajor (Major) ON UPDATE CASCADE ON DELETE CASCADE,
-#     MinGPA         FLOAT(4)     NOT NULL,
-#     IndustryID     INT          NOT NULL REFERENCES Industry (IndustryID) ON UPDATE CASCADE ON DELETE RESTRICT,
-#     Posted         DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP,
-#     JobDescription VARCHAR(500) NOT NULL,
-#     SkillID        INT          NOT NULL REFERENCES Skill (SkillID) ON UPDATE CASCADE ON DELETE RESTRICT
-# );
+@coop.route('/flagJob', methods=['POST'])
+def flag_job():
+    data = request.form
+
+    jobID = data['JobID']
+
+    reason = data['Reason']
+
+    query = f'''
+            INSERT INTO FlaggedJob (JobID, Reason)
+            VALUES ('{jobID}', '{reason}')
+            '''
+
+    cursor = db.get_db().cursor()
+
+    cursor.execute(query)
+
+    db.get_db().commit()
+
+    theResponse = make_response("Flagged!")
+    theResponse.status_code = 200
+
+    return theResponse
