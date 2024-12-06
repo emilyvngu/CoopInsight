@@ -101,70 +101,93 @@ def get_industries_in_jobs():
         print(f"Error fetching industries in jobs: {e}")
         return jsonify({"success": False, "error": str(e)}), 500
 
+@analyst.route('/available_positions/<industry>', methods=['GET'])
+def get_available_positions(industry):
+    try:
+        cursor = db.get_db().cursor()
 
-@analyst.route('/available_positions', methods=['GET'])
-def get_available_positions():
-    time_period = request.args.get('time_period')
-    industry = request.args.get('industry')
+        # Query to fetch the number of available positions
+        query = """
+            SELECT COUNT(j.JobID) AS AvailablePositions
+            FROM JobListing j
+            JOIN Industry i ON j.IndustryID = i.IndustryID
+        """
+        params = []
 
-    query = """
-        SELECT COUNT(*) AS TotalPositions
-        FROM JobListing j
-        WHERE j.Posted >= NOW() - INTERVAL %s
-    """
-    params = ["12 MONTH"] if time_period == "Last 12 Months" else ["6 MONTH"]
-    if industry != "All Industries":
-        query += " AND j.IndustryID = (SELECT IndustryID FROM Industry WHERE IndustryName = %s)"
-        params.append(industry)
+        if industry != "All Industries":
+            query += " WHERE i.IndustryName = %s"
+            params.append(industry)
 
-    cursor = db.get_db().cursor()
-    cursor.execute(query, params)
-    result = cursor.fetchone()
-    return jsonify({"data": {"total_positions": result[0]}})
+        cursor.execute(query, params)
+        result = cursor.fetchone()
 
-@analyst.route('/top_skills', methods=['GET'])
-def get_top_skills():
-    time_period = request.args.get('time_period')
-    industry = request.args.get('industry')
+        # Return the data as JSON
+        return jsonify({"AvailablePositions": result[0]}), 200
 
-    query = """
-        SELECT s.SkillName, COUNT(js.SkillID) AS Count
-        FROM JobSkill js
-        JOIN Skill s ON js.SkillID = s.SkillID
-        JOIN JobListing j ON js.JobID = j.JobID
-        WHERE j.Posted >= NOW() - INTERVAL %s
-    """
-    params = ["12 MONTH"] if time_period == "Last 12 Months" else ["6 MONTH"]
-    if industry != "All Industries":
-        query += " AND j.IndustryID = (SELECT IndustryID FROM Industry WHERE IndustryName = %s)"
-        params.append(industry)
+    except Exception as e:
+        current_app.logger.error(f"Error fetching available positions: {e}")
+        return jsonify({"error": str(e)}), 500
 
-    query += " GROUP BY s.SkillName ORDER BY Count DESC LIMIT 10"
-    cursor = db.get_db().cursor()
-    cursor.execute(query, params)
-    results = cursor.fetchall()
-    return jsonify({"data": [dict(zip([col[0] for col in cursor.description], row)) for row in results]})
+@analyst.route('/top_skills/<industry>', methods=['GET'])
+def get_top_skills(industry):
+    try:
+        cursor = db.get_db().cursor()
 
-@analyst.route('/application_success_rate', methods=['GET'])
-def get_application_success_rate():
-    time_period = request.args.get('time_period')
-    industry = request.args.get('industry')
+        # Query to fetch the most required skills
+        query = """
+            SELECT s.SkillName, COUNT(js.SkillID) AS Demand
+            FROM JobSkill js
+            JOIN Skill s ON js.SkillID = s.SkillID
+            JOIN JobListing j ON js.JobID = j.JobID
+            JOIN Industry i ON j.IndustryID = i.IndustryID
+        """
+        params = []
 
-    query = """
-        SELECT 
-            SUM(CASE WHEN a.Status = 'Accepted' THEN 1 ELSE 0 END) AS Success,
-            SUM(CASE WHEN a.Status != 'Accepted' THEN 1 ELSE 0 END) AS Failure
-        FROM Applicant a
-        JOIN JobListing j ON a.JobID = j.JobID
-        WHERE j.Posted >= NOW() - INTERVAL %s
-    """
-    params = ["12 MONTH"] if time_period == "Last 12 Months" else ["6 MONTH"]
-    if industry != "All Industries":
-        query += " AND j.IndustryID = (SELECT IndustryID FROM Industry WHERE IndustryName = %s)"
-        params.append(industry)
+        if industry != "All Industries":
+            query += " WHERE i.IndustryName = %s"
+            params.append(industry)
 
-    cursor = db.get_db().cursor()
-    cursor.execute(query, params)
-    result = cursor.fetchone()
-    return jsonify({"data": {"success": result[0], "failure": result[1]}})
+        query += " GROUP BY s.SkillName ORDER BY Demand DESC LIMIT 10"
 
+        cursor.execute(query, params)
+        results = cursor.fetchall()
+
+        # Convert results to a list of dictionaries
+        data = [dict(zip([col[0] for col in cursor.description], row)) for row in results]
+        return jsonify({"TopSkills": data}), 200
+
+    except Exception as e:
+        current_app.logger.error(f"Error fetching top skills: {e}")
+        return jsonify({"error": str(e)}), 500
+
+@analyst.route('/application_success_rate/<industry>', methods=['GET'])
+def get_application_success_rate(industry):
+    try:
+        cursor = db.get_db().cursor()
+
+        # Query to calculate the application success rate
+        query = """
+            SELECT
+                COUNT(CASE WHEN a.Status = 'Accepted' THEN 1 END) AS AcceptedApplications,
+                COUNT(a.ApplicantID) AS TotalApplications
+            FROM Applicant a
+            JOIN JobListing j ON a.JobID = j.JobID
+            JOIN Industry i ON j.IndustryID = i.IndustryID
+        """
+        params = []
+
+        if industry != "All Industries":
+            query += " WHERE i.IndustryName = %s"
+            params.append(industry)
+
+        cursor.execute(query, params)
+        result = cursor.fetchone()
+
+        accepted, total = result
+        success_rate = (accepted / total) * 100 if total > 0 else 0
+
+        return jsonify({"ApplicationSuccessRate": success_rate}), 200
+
+    except Exception as e:
+        current_app.logger.error(f"Error fetching application success rate: {e}")
+        return jsonify({"error": str(e)}), 500
