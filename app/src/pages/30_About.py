@@ -45,4 +45,4 @@ st.markdown(
     """
 )
 
-st.page_link("pages/Home.py", label="Go Back to Home")
+st.page_link("app/src/Home.py", label="Go Back to Home")
