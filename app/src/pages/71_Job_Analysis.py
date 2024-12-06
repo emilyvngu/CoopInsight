@@ -35,18 +35,27 @@ def fetch_job_ratings(company_name, job_name):
     Fetch job ratings for a specific company and job, and aggregate reviews and ratings.
     """
     try:
+        # Fetch job ratings from API
         response = requests.get(f"{BASE_URL}/jobratings")
         response.raise_for_status()
         df = pd.DataFrame(response.json())
-        
-        # Filter data for the specific company and job
-        filtered_df = df[
-                (df['CompanyName'] == company_name) &
-                (df['JobName'] == job_name)]
 
-        st.write(filtered_df)
+        # Log the raw data
+        st.write("Raw DataFrame from API:")
+        st.write(df)
+
+        # Normalize column values to avoid case and whitespace issues
+        df['CompanyName'] = df['CompanyName'].str.strip().str.lower()
+        df['JobName'] = df['JobName'].str.strip().str.lower()
+
+        # Filter for the specific company and job
+        filtered_df = df[
+            (df['CompanyName'] == company_name.strip().lower()) &
+            (df['JobName'] == job_name.strip().lower())
+        ]
 
         if not filtered_df.empty:
+            # Aggregate reviews and ratings
             aggregated_reviews = " ".join(filtered_df['Review'].tolist())
             average_rating = filtered_df['OverallRating'].mean()
 
@@ -63,12 +72,10 @@ def fetch_job_ratings(company_name, job_name):
                 "detailed_ratings": detailed_ratings
             }
         else:
-            st.write("filtered dataframe empty")
+            st.warning(f"No ratings found for {job_name} at {company_name}.")
             return None
-
     except requests.exceptions.RequestException as e:
         st.error(f"Error fetching job ratings: {e}")
-        logger.error(f"Error fetching job ratings: {e}")
         return None
 
 
