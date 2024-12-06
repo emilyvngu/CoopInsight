@@ -56,7 +56,13 @@ try:
                 if status.status_code == 200:
                     st.success(f"Employee {employee_id} has been terminated.")
                 else:
-                    st.error(f"Failed to terminate employee: {status.status_code}")
+                    supervisedStudents = requests.get('http://api:4000/coop/getStudentsEmployeeSupervises', data=st.session_state).json()
+                    supervisedDataframe = pd.DataFrame(supervisedStudents)
+                    if (not supervisedDataframe.empty):
+                        studentList = supervisedDataframe['StudentID'].tolist()
+                        st.error("Failed to terminate employee: supervises the following students: " + str(studentList))
+                    else:
+                        st.error(f"Failed to terminate employee: {status.status_code}")
             except Exception as e:
                 logger.error(f"Error terminating employee: {e}")
                 st.error("An error occurred while terminating the employee.")

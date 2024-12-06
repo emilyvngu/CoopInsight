@@ -51,8 +51,11 @@ st.session_state['IndustryName'] = st.selectbox(
     options=["-- Enter an Industry --"] + industry_list, 
     index=0
 )
+
 if st.session_state['IndustryName'] == "-- Enter an Industry --":
     st.session_state['IndustryName'] = st.text_input("Or input an industry:")
+else:
+    st.session_state['IndustryID'] = industry_list.index(st.session_state['IndustryName'])
 
 # Input: Job Description
 st.session_state['JobDescription'] = st.text_area('Job Description:')
@@ -73,8 +76,12 @@ st.session_state['SkillName'] = st.selectbox(
     options=["-- Enter a Skill --"] + skill_list, 
     index=0
 )
+
+
 if st.session_state['SkillName'] == "-- Enter a Skill --":
     st.session_state['SkillName'] = st.text_input("Or input a skill:")
+else:
+    st.session_state['SkillID'] = skill_list.index(st.session_state['SkillName'])
 
 # Job Posting Preview
 st.markdown("### Job Posting Preview")
@@ -98,7 +105,10 @@ if st.button('Post job offering?', type='primary', use_container_width=True):
             "Major": st.session_state['Major'],
             "Industry": st.session_state['IndustryName'],
             "JobDescription": st.session_state['JobDescription'],
-            "Skill": st.session_state['SkillName']
+            "Skill": st.session_state['SkillName'],
+            "CompanyID": st.session_state['CompanyID'],
+            "IndustryID": st.session_state['IndustryID'],
+            "SkillID": st.session_state['SkillID']
         }
         response = requests.put('http://api:4000/coop/postJobOffer', data=payload)
         

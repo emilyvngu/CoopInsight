@@ -863,3 +863,26 @@ def get_job_rating():
     the_response.status_code = 200
 
     return the_response
+
+@coop.route('/getStudentsEmployeeSupervises', methods=["GET"])
+def get_students_supervised():
+    data = request.form
+
+    employeeID = data['EmployeeID']
+
+    query = f'''
+            SELECT *
+            FROM Student
+            WHERE SupervisorID = '{employeeID}'
+            '''
+    
+    cursor = db.get_db().cursor()
+
+    cursor.execute(query)
+
+    theData = cursor.fetchall()
+
+    the_response = make_response(jsonify(theData))
+    the_response.status_code = 200
+
+    return the_response
