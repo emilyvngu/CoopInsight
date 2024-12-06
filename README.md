@@ -1,7 +1,6 @@
 # TODO:
 - Include how to initialize/build this program!!!
 
-# ReadMe Below:
 # About CoopInsight
 
 Welcome to **CoopInsight** 
