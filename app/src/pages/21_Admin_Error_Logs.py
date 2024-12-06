@@ -13,9 +13,20 @@ SideBarLinks()
 BASE_URL = "http://api:4000/admin"
 
 def fetch_error_logs():
+    """
+    Fetch error logs from the API.
+    """
     response = requests.get(f"{BASE_URL}/error_logs")
-    return response.json()
+    response.raise_for_status()
+    return pd.DataFrame(response.json())
 
-if st.button("Fetch Error Logs"):
-    logs = fetch_error_logs()
-    st.write(pd.DataFrame(logs))
+# Page: Track Error Logs
+st.title("Track Error Logs")
+
+# Fetch and display error logs
+error_logs_df = fetch_error_logs()
+if not error_logs_df.empty:
+    st.write("### Error Logs")
+    st.dataframe(error_logs_df)
+else:
+    st.write("No error logs available.")
