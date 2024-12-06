@@ -44,8 +44,6 @@ def fetch_job_ratings(company_name, job_name):
                 (df['CompanyName'].str.strip().str.lower() == company_name.strip().lower()) &
                 (df['JobName'].str.strip().str.lower() == job_name.strip().lower())]
 
-        print(filtered_df)
-
         if not filtered_df.empty:
             aggregated_reviews = " ".join(filtered_df['Review'].tolist())
             average_rating = filtered_df['OverallRating'].mean()
@@ -63,6 +61,7 @@ def fetch_job_ratings(company_name, job_name):
                 "detailed_ratings": detailed_ratings
             }
         else:
+            st.write("filtered dataframe empty")
             return None
 
     except requests.exceptions.RequestException as e:
@@ -97,7 +96,6 @@ if not companies_jobs_df.empty:
             # Button to fetch ratings for the selected company
             if st.button(f"View Ratings for {job_name} at {company_name}", key=f"{company_id}_{job_name}"):
                 ratings_data = fetch_job_ratings(company_name, job_name)
-                st.write(ratings_data)
 
                 if ratings_data:
                     st.write(f"## Ratings for {company_name} - {job_name}")
