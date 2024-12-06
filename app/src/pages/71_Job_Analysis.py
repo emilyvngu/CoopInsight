@@ -32,17 +32,38 @@ def fetch_companies_and_jobs():
 
 def fetch_job_ratings(company_name, job_name):
     """
-    Fetch job ratings for a specific company from the Flask backend.
+    Fetch job ratings for a specific company and job, and aggregate reviews and ratings.
     """
     try:
         response = requests.get(f"{BASE_URL}/jobratings")
         response.raise_for_status()
         df = pd.DataFrame(response.json())
-        return df[(df['CompanyName'] == company_name) & (df['JobName'] == job_name)]
+        
+        # Filter data for the specific company and job
+        filtered_df = df[(df['CompanyName'] == company_name) & (df['JobName'] == job_name)]
+
+        if not filtered_df.empty:
+            # Aggregate reviews and ratings
+            aggregated_reviews = " ".join(filtered_df['Review'].tolist())
+            average_rating = filtered_df['OverallRating'].mean()
+
+            return {
+                "average_rating": average_rating,
+                "aggregated_reviews": aggregated_reviews,
+                "detailed_ratings": filtered_df[[
+                    'CompensationRating',
+                    'LearningOpportunitiesRating',
+                    'WorkCultureRating',
+                    'WorkLifeBalanceRating'
+                ]].mean().to_dict()
+            }
+        else:
+            return None
     except requests.exceptions.RequestException as e:
         st.error(f"Error fetching job ratings: {e}")
         logger.error(f"Error fetching job ratings: {e}")
-        return pd.DataFrame()
+        return None
+
 
 # Fetch companies and jobs data
 companies_jobs_df = fetch_companies_and_jobs()
@@ -68,22 +89,25 @@ if not companies_jobs_df.empty:
             st.write(f"**Job:** {job_name}")
             
             # Button to fetch ratings for the selected company
-            if st.button(f"View Ratings for {job_name} at {company_name}", key=[company_id, job_name]):
-                ratings_df = fetch_job_ratings(company_name, job_name)
+            if st.button(f"View Ratings for {job_name} at {company_name}", key=f"{company_id}_{job_name}"):
+            ratings_data = fetch_job_ratings(company_name, job_name)
 
-                if not ratings_df.empty:
-                    st.write(f"## Ratings for {company_name} - {job_name}")
-                    for _, rating_row in ratings_df.iterrows():
-                        st.write(f"### Job: {rating_row['JobName']}")
-                        st.progress(rating_row["OverallRating"] / 5)
-                        st.write(f"Work Culture: {rating_row['WorkCultureRating']}/5")
-                        st.write(f"Compensation: {rating_row['CompensationRating']}/5")
-                        st.write(f"Work-Life Balance: {rating_row['WorkLifeBalanceRating']}/5")
-                        st.write(f"Learning Opportunities: {rating_row['LearningOpportunitiesRating']}/5")
-                        st.write(f"Review: {rating_row['Review']}")
-                        st.write("---")
-                else:
-                    st.warning(f"No ratings available for {job_name} at {company_name}.")
+            if ratings_data:
+                st.write(f"## Ratings for {company_name} - {job_name}")
+
+                # Display the overall average rating
+                st.write(f"**Average Overall Rating:** {ratings_data['average_rating']:.2f}/5")
+
+                # Display detailed average ratings
+                st.write("### Detailed Average Ratings")
+                for rating_category, value in ratings_data['detailed_ratings'].items():
+                    st.write(f"**{rating_category.replace('Rating', '')}:** {value:.2f}/5")
+
+                # Display combined reviews
+                st.write("### Aggregated Reviews")
+                st.write(ratings_data['aggregated_reviews'])
+            else:
+                st.warning(f"No ratings available for {job_name} at {company_name}.")
     else:
         st.warning("No results match your search query.")
 else:
