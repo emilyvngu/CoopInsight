@@ -45,4 +45,4 @@ st.markdown(
     """
 )
 if st.button("Go Back to Home"):
-    st.page_link("app/src/Home.py", label="Go Back to Home")
+    st.page_link("Home.py", label="Home", icon="🏠")
