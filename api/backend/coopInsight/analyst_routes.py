@@ -75,6 +75,38 @@ def get_companies_and_jobs():
         logger.error(f"Error fetching jobs: {e}")
         return make_response(jsonify({"error": "An error occurred while fetching jobs."}))
 
+#------------------------------------------------------------
+# Get all industries already in job listings
+
+@analyst.route('/industries_in_jobs', methods=['GET'])
+def get_industries_in_jobs():
+    try:
+        # Get the database cursor
+        cursor = db.get_db().cursor()
+
+        # Query to fetch industries with job listings
+        query = """
+            SELECT DISTINCT i.IndustryID, i.IndustryName
+            FROM Industry i
+            JOIN JobListing j ON i.IndustryID = j.IndustryID
+            ORDER BY i.IndustryName
+        """
+        cursor.execute(query)
+
+        # Fetch results
+        results = cursor.fetchall()
+        column_names = [desc[0] for desc in cursor.description]
+        data = [dict(zip(column_names, row)) for row in results]
+
+        # Return the response
+        return jsonify({"success": True, "data": data}), 200
+
+    except Exception as e:
+        # Log the error and return a 500 error response
+        print(f"Error fetching industries in jobs: {e}")
+        return jsonify({"success": False, "error": str(e)}), 500
+
+
 @analyst.route('/industry_compensation/<time_period>/<industry>', methods=['GET'])
 def get_industry_compensation(time_period, industry):
     """
