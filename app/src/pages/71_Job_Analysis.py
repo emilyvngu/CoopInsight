@@ -68,7 +68,7 @@ if not companies_jobs_df.empty:
             st.write(f"**Job:** {job_name}")
             
             # Button to fetch ratings for the selected company
-            if st.button(f"View Ratings for {job_name} at {company_name}", key=company_id):
+            if st.button(f"View Ratings for {job_name} at {company_name}", key=[company_id, job_name]):
                 ratings_df = fetch_job_ratings(company_id)
 
                 if not ratings_df.empty:
