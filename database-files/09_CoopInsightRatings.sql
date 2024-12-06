@@ -41,3 +41,7 @@ insert into Rating (OverallRating, Review, WorkCultureRating, CompensationRating
                     LearningOpportunitiesRating, JobID, CompanyID, UserID)
 values (1, 'I wish the company would listen. I tried talking to HR about my concerns and they did nothing.', 1, 1, 1, 1,
         4, 4, 4);
+insert into Rating (OverallRating, Review, WorkCultureRating, CompensationRating, WorkLifeBalanceRating,
+                    LearningOpportunitiesRating, JobID, CompanyID, UserID)
+values (1, 'I wish the company would listen. I tried talking to HR about my concerns and they did nothing.', 1, 1, 1, 1,
+        6, 19, 4);
