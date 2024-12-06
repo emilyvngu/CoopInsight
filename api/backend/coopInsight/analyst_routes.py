@@ -189,7 +189,7 @@ def get_applicant_count_by_industry():
 #------------------------------------------------------------
 # Get all industries already in job listings
 @analyst.route('/companies_in_jobs', methods=['GET'])
-def get_industries_in_jobs():
+def get_companies_in_jobs():
     
     cursor = db.get_db().cursor()
 
