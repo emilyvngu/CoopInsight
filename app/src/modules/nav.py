@@ -64,7 +64,7 @@ def JobAnalysisNav():
 
 def CompanyAnalysisNav():
     st.sidebar.page_link(
-        "pages/73_Company_Analysis.py", label="Job Analysis", icon="🌺"
+        "pages/73_Company_Analysis.py", label="Company Analysis", icon="🌺"
     )
 
 

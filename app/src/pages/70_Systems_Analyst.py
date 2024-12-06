@@ -23,6 +23,11 @@ if st.button('Analyze Jobs',
              use_container_width=True):
   st.switch_page('pages/71_Job_Analysis.py')
 
+if st.button('Analyze Companies', 
+             type='primary',
+             use_container_width=True):
+  st.switch_page('pages/73_Company_Analysis.py')
+
 if st.button('Analyze Industries', 
              type='primary',
              use_container_width=True):
