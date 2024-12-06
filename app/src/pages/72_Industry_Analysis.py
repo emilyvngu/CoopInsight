@@ -105,11 +105,3 @@ if st.button("Fetch Industry Trends"):
             st.write("No skills data available for the selected industry.")
     else:
         st.write("No data available.")
-
-    # Application Success Rate
-    success_rate = fetch_application_success_rate(industry)
-    if success_rate is not None:
-        st.metric(label="Application Success Rate", value=f"{success_rate:.2f}%")
-    else:
-        st.write("No data available.")
-
