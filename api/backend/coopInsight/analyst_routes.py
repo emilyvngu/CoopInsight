@@ -107,52 +107,6 @@ def get_industries_in_jobs():
         return jsonify({"success": False, "error": str(e)}), 500
 
 
-@analyst.route('/industry_compensation/<time_period>/<industry>', methods=['GET'])
-def get_industry_compensation(time_period, industry):
-    """
-    Fetch the average compensation for job listings by industry and time period.
-    """
-    try:
-        # Construct base SQL query
-        query = """
-            SELECT i.IndustryName, AVG(j.Compensation) AS AverageCompensation
-            FROM JobListing j
-            JOIN Industry i ON j.IndustryID = i.IndustryID
-        """
-        params = []
-
-        # Add time period condition if not "All Time"
-        if time_period != "All Time":
-            query += " WHERE j.Posted >= NOW() - INTERVAL %s"
-            params.append("12 MONTH" if time_period == "Last 12 Months" else "6 MONTH")
-
-        # Add industry condition if not "All Industries"
-        if industry != "All Industries":
-            if "WHERE" in query:
-                query += " AND i.IndustryName = %s"
-            else:
-                query += " WHERE i.IndustryName = %s"
-            params.append(industry)
-
-        # Group by industry
-        query += " GROUP BY i.IndustryName"
-
-        # Execute the query
-        cursor = db.get_db().cursor()
-        cursor.execute(query, params)
-        results = cursor.fetchall()
-
-        # Convert results to a list of dictionaries
-        data = [dict(zip([col[0] for col in cursor.description], row)) for row in results]
-
-        # Return JSON response
-        return jsonify({"data": data}), 200
-
-    except Exception as e:
-        # Log the error and return a 500 response
-        current_app.logger.error(f"Error fetching industry compensation: {e}")
-        return jsonify({"error": "An error occurred while fetching industry compensation."}), 500
-
 @analyst.route('/available_positions', methods=['GET'])
 def get_available_positions():
     time_period = request.args.get('time_period')
