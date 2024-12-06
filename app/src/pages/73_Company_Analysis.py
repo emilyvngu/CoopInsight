@@ -10,24 +10,24 @@ import matplotlib.pyplot as plt
 logger = logging.getLogger(__name__)
 
 # Set Streamlit page configuration
-st.set_page_config(layout="wide", page_title="Industry Trends Dashboard")
+st.set_page_config(layout="wide", page_title="Company Trends Dashboard")
 
 # Display the appropriate sidebar links for the role of the logged-in user
 SideBarLinks()
 
 # Dashboard Layout
-st.title("Industry Trends Dashboard")
+st.title("Company Trends Dashboard")
 
 # Fetch and Display Data
 # Average Compensation by Industry
 BASE_URL = "http://api:4000/analyst"
 
-def fetch_industries():
+def fetch_companies():
     """
-    Fetch the list of industries from the Flask backend.
+    Fetch the list of companies from the Flask backend.
     """
     try:
-        response = requests.get(f"{BASE_URL}/industries_in_jobs") 
+        response = requests.get(f"{BASE_URL}/companies_in_jobs") 
         response.raise_for_status() 
         return pd.DataFrame(response.json())  # Convert JSON to DataFrame
     except requests.exceptions.RequestException as e:
@@ -35,9 +35,9 @@ def fetch_industries():
         logger.error(f"Error fetching data: {e}")
         return pd.DataFrame()  # Return an empty DataFrame
 
-industries_list = fetch_industries()
-industries_names_only = industries_list['IndustryName']
-industry = st.selectbox("Select Industry", industries_names_only)
+companies_list = fetch_industries()
+companies_names_only = industries_list['CompanyName']
+company = st.selectbox("Select Industry", companies_names_only)
 
 def fetch_available_positions():
     """

@@ -97,6 +97,8 @@ def get_industries_in_jobs():
     response.status_code = 200
     return response
 
+
+#------------------------------------------------------------
 @analyst.route('/available_positions', methods=['GET'])
 def get_available_positions():
     """
@@ -121,6 +123,8 @@ def get_available_positions():
     response.status_code = 200
     return response
 
+
+#------------------------------------------------------------
 @analyst.route('/skills_with_industries', methods=['GET'])
 def get_skills_with_industries():
     """
@@ -148,6 +152,8 @@ def get_skills_with_industries():
     response.status_code = 200
     return response
 
+
+#------------------------------------------------------------
 @analyst.route('/applicant_count_by_industry', methods=['GET'])
 def get_applicant_count_by_industry():
     """
@@ -179,3 +185,25 @@ def get_applicant_count_by_industry():
         import traceback
         current_app.logger.error(f"Error fetching applicant counts: {traceback.format_exc()}")
         return jsonify({"error": str(e)}), 500
+
+#------------------------------------------------------------
+# Get all industries already in job listings
+@analyst.route('/companies_in_jobs', methods=['GET'])
+def get_industries_in_jobs():
+    
+    cursor = db.get_db().cursor()
+
+    # Query to fetch industries with job listings
+    query = """
+        SELECT DISTINCT c.CompanyID, c.CompanyName
+        FROM Company c
+        JOIN JobListing j ON j.CompanyID = c.CompanyID
+        ORDER BY c.CompanyName
+    """
+    cursor.execute(query)
+
+    theData = cursor.fetchall()
+
+    response = make_response(jsonify(theData))
+    response.status_code = 200
+    return response
