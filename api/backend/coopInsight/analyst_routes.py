@@ -120,3 +120,31 @@ def get_available_positions():
     response = make_response(jsonify(theData))
     response.status_code = 200
     return response
+
+@analyst.route('/skills_with_industries', methods=['GET'])
+def get_skills_with_industries():
+    """
+    Fetch the demand for each skill grouped by industry.
+    """
+
+    cursor = db.get_db().cursor()
+
+    # Query to fetch skill demand grouped by industry
+    query = """
+        SELECT i.IndustryName, s.SkillName, COUNT(js.SkillID) AS Demand
+        FROM JobSkill js
+        JOIN Skill s ON js.SkillID = s.SkillID
+        JOIN JobListing j ON js.JobID = j.JobID
+        JOIN Industry i ON j.IndustryID = i.IndustryID
+        GROUP BY i.IndustryName, s.SkillName
+        ORDER BY i.IndustryName, Demand DESC
+    """
+    cursor.execute(query)
+
+    # Fetch all results
+    theData = cursor.fetchall()
+
+    # Convert the results to a JSON response
+    response = make_response(jsonify(theData))
+    response.status_code = 200
+    return response
