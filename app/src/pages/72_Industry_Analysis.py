@@ -28,7 +28,7 @@ def fetch_industries():
     """
     try:
         response = requests.get(f"{BASE_URL}/industries_in_jobs") 
-        response.raise_for_status()  # Raise an HTTPError for bad responses
+        response.raise_for_status() 
         return pd.DataFrame(response.json())  # Convert JSON to DataFrame
     except requests.exceptions.RequestException as e:
         st.error(f"Error fetching data: {e}")
@@ -39,14 +39,14 @@ industries_list = fetch_industries()
 industries_names_only = industries_list['IndustryName']
 industry = st.selectbox("Select Industry", industries_names_only)
 
-def fetch_available_positions(industry):
+def fetch_available_positions():
     """
     Fetch the number of available positions for the selected industry.
     """
     try:
-        response = requests.get(f"{BASE_URL}/available_positions/{industry}")
+        response = requests.get(f"{BASE_URL}/available_positions")
         response.raise_for_status()
-        return response.json()["AvailablePositions"]
+        return pd.DataFrame(response.json())
     except requests.exceptions.RequestException as e:
         st.error(f"Error fetching available positions: {e}")
         logger.error(f"Error fetching available positions: {e}")
@@ -57,7 +57,8 @@ if st.button("Fetch Industry Trends"):
     st.write(f"### Industry Trends for {industry}")
 
     # Number of Available Positions
-    positions = fetch_available_positions(industry)
+    positions = fetch_available_positions()
+    filtered_positions = positions[positions['IndustryName'] == industry]
     if positions is not None:
         st.metric("Number of Available Positions", positions)
 
