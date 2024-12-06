@@ -82,6 +82,12 @@ def AdminPageNav():
 def ErrorLogNav():
     st.sidebar.page_link("pages/21_Admin_Error_Logs.py", label="View Error Log", icon="🚫"
 )
+    
+def FlaggedJobsNav():
+    st.sidebar.page_link("pages/22_Flagged_Jobs.py", label='View Flagged Jobs', icon="❗️")
+
+def FlaggedRatingsNav():
+    st.sidebar.page_link('pages/23_Flagged_Ratings.py', label='View Flagged Ratings', icon="🏴‍☠️")
 
 
 # --------------------------------Links Function -----------------------------------------------
@@ -130,6 +136,8 @@ def SideBarLinks(show_home=False):
         if st.session_state["role"] == "debug":
             AdminPageNav()
             ErrorLogNav()
+            FlaggedJobsNav()
+            FlaggedRatingsNav()
 
     # Always show the About page at the bottom of the list of links
     AboutPageNav()
