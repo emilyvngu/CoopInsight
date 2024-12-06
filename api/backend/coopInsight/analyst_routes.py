@@ -121,12 +121,16 @@ def get_available_positions(industry):
         cursor.execute(query, params)
         result = cursor.fetchone()
 
-        # Return the data as JSON
-        return jsonify({"AvailablePositions": result[0]}), 200
+        # Ensure the result is properly formatted
+        available_positions = result[0] if result and result[0] is not None else 0
+
+        return jsonify({"AvailablePositions": available_positions}), 200
 
     except Exception as e:
-        current_app.logger.error(f"Error fetching available positions: {e}")
+        import traceback
+        current_app.logger.error(f"Error fetching available positions: {traceback.format_exc()}")
         return jsonify({"error": str(e)}), 500
+
 
 @analyst.route('/top_skills/<industry>', methods=['GET'])
 def get_top_skills(industry):
