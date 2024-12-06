@@ -93,8 +93,8 @@ def get_industries_in_jobs():
 
         theData = cursor.fetchall()
 
-        the_response = make_response(jsonify(theData))
-        the_response.status_code = 200
+        response = make_response(jsonify(theData))
+        response.status_code = 200
         return response
 
     except Exception as e:

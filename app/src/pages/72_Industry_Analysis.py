@@ -22,10 +22,21 @@ st.title("Industry Trends Dashboard")
 # Average Compensation by Industry
 BASE_URL = "http://api:4000/analyst"
 
-/industries_in_jobs
-industries_list = 
-time_period = st.selectbox("Select Time Period", industries_list)
-industry = st.text_input("Enter Industry", "All Industries")
+def fetch_industries():
+    """
+    Fetch the list of industries from the Flask backend.
+    """
+    try:
+        response = requests.get(f"{BASE_URL}/industries_in_jobs") 
+        response.raise_for_status()  # Raise an HTTPError for bad responses
+        return pd.DataFrame(response.json())  # Convert JSON to DataFrame
+    except requests.exceptions.RequestException as e:
+        st.error(f"Error fetching data: {e}")
+        logger.error(f"Error fetching data: {e}")
+        return pd.DataFrame()  # Return an empty DataFrame
+
+industries_list = fetch_industries()
+industry = st.selectbox("Select Industry", industries_list)
 
 if st.button("Fetch Industry Compensation"):
     data = fetch_industry_compensation(time_period, industry)
