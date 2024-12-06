@@ -131,11 +131,10 @@ def get_skills_with_industries():
 
     # Query to fetch skill demand grouped by industry
     query = """
-        SELECT i.IndustryName, s.SkillName, COUNT(js.SkillID) AS Demand
-        FROM JobSkill js
-        JOIN Skill s ON js.SkillID = s.SkillID
-        JOIN JobListing j ON js.JobID = j.JobID
+        SELECT i.IndustryName, s.SkillName, COUNT(j.SkillID) AS Demand
+        FROM JobListing j 
         JOIN Industry i ON j.IndustryID = i.IndustryID
+        JOIN Skill s ON j.SkillID = s.SkillID
         GROUP BY i.IndustryName, s.SkillName
         ORDER BY i.IndustryName, Demand DESC
     """
