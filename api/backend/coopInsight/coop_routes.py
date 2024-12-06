@@ -815,3 +815,51 @@ def flag_job():
     theResponse.status_code = 200
 
     return theResponse
+
+@coop.route('/flagRating', methods=['POST'])
+def flag_rating():
+    data = request.form
+
+    ratingID = data['RatingID']
+
+    reason = data['Reason']
+
+    query = f'''
+            INSERT INTO FlaggedRating (RatingID, Reason)
+            VALUES ('{ratingID}', '{reason}')
+            '''
+
+    cursor = db.get_db().cursor()
+
+    cursor.execute(query)
+
+    db.get_db().commit()
+
+    theResponse = make_response("Flagged!")
+    theResponse.status_code = 200
+
+    return theResponse
+
+
+@coop.route('/getJobRatings', methods=['GET'])
+def get_job_rating():
+    data = request.form
+
+    jobID = data['JobID']
+
+    query = f'''
+            SELECT RatingID, OverallRating, Review, WorkCultureRating, CompensationRating, WorkLifeBalanceRating, LearningOpportunitiesRating
+            FROM Rating
+            WHERE JobID = {jobID}
+            '''
+    
+    cursor = db.get_db().cursor()
+
+    cursor.execute(query)
+
+    theData = cursor.fetchall()
+
+    the_response = make_response(jsonify(theData))
+    the_response.status_code = 200
+
+    return the_response
