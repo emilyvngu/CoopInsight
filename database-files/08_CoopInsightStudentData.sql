@@ -1,53 +1,55 @@
 USE CoopInsight;
 
-insert into Student (StudentID, UserID, GPA, Skill, Major, SupervisorID) values (1, 96, 3.48, 5, 'Legal', 23);
-insert into Student (StudentID, UserID, GPA, Skill, Major, SupervisorID) values (2, 66, 3.28, 22, 'Sales', 14);
-insert into Student (StudentID, UserID, GPA, Skill, Major, SupervisorID) values (3, 58, 3.75, 10, 'Sales', 1);
-insert into Student (StudentID, UserID, GPA, Skill, Major, SupervisorID) values (4, 19, 3.97, 9, 'Legal', 28);
-insert into Student (StudentID, UserID, GPA, Skill, Major, SupervisorID) values (5, 17, 3.08, 20, 'Human Resources', 38);
-insert into Student (StudentID, UserID, GPA, Skill, Major, SupervisorID) values (6, 81, 2.76, 22, 'Business Development', 2);
-insert into Student (StudentID, UserID, GPA, Skill, Major, SupervisorID) values (7, 25, 3.91, 13, 'Legal', 29);
-insert into Student (StudentID, UserID, GPA, Skill, Major, SupervisorID) values (8, 81, 3.55, 8, 'Sales', 1);
-insert into Student (StudentID, UserID, GPA, Skill, Major, SupervisorID) values (9, 15, 2.76, 18, 'Accounting', 25);
-insert into Student (StudentID, UserID, GPA, Skill, Major, SupervisorID) values (10, 51, 2.71, 5, 'Sales', 4);
-insert into Student (StudentID, UserID, GPA, Skill, Major, SupervisorID) values (11, 24, 3.99, 24, 'Training', 28);
-insert into Student (StudentID, UserID, GPA, Skill, Major, SupervisorID) values (12, 89, 2.76, 9, 'Human Resources', 6);
-insert into Student (StudentID, UserID, GPA, Skill, Major, SupervisorID) values (13, 38, 2.51, 3, 'Human Resources', 17);
-insert into Student (StudentID, UserID, GPA, Skill, Major, SupervisorID) values (14, 19, 2.24, 1, 'Training', 40);
-insert into Student (StudentID, UserID, GPA, Skill, Major, SupervisorID) values (15, 45, 1.61, 12, 'Training', 6);
-insert into Student (StudentID, UserID, GPA, Skill, Major, SupervisorID) values (16, 99, 1.6, 15, 'Human Resources', 12);
-insert into Student (StudentID, UserID, GPA, Skill, Major, SupervisorID) values (17, 52, 2.16, 14, 'Services', 13);
-insert into Student (StudentID, UserID, GPA, Skill, Major, SupervisorID) values (18, 51, 3.04, 5, 'Services', 23);
-insert into Student (StudentID, UserID, GPA, Skill, Major, SupervisorID) values (19, 32, 3.76, 12, 'Training', 38);
-insert into Student (StudentID, UserID, GPA, Skill, Major, SupervisorID) values (20, 56, 2.61, 12, 'Human Resources', 37);
-insert into Student (StudentID, UserID, GPA, Skill, Major, SupervisorID) values (21, 33, 2.87, 20, 'Engineering', 18);
-insert into Student (StudentID, UserID, GPA, Skill, Major, SupervisorID) values (22, 80, 3.06, 1, 'Sales', 28);
-insert into Student (StudentID, UserID, GPA, Skill, Major, SupervisorID) values (23, 77, 2.41, 14, 'Sales', 12);
-insert into Student (StudentID, UserID, GPA, Skill, Major, SupervisorID) values (24, 23, 3.6, 1, 'Training', 11);
-insert into Student (StudentID, UserID, GPA, Skill, Major, SupervisorID) values (25, 18, 2.04, 23, 'Engineering', 19);
-insert into Student (StudentID, UserID, GPA, Skill, Major, SupervisorID) values (26, 71, 1.82, 12, 'Human Resources', 19);
-insert into Student (StudentID, UserID, GPA, Skill, Major, SupervisorID) values (27, 89, 1.23, 15, 'Training', 23);
-insert into Student (StudentID, UserID, GPA, Skill, Major, SupervisorID) values (28, 20, 3.59, 24, 'Training', 28);
-insert into Student (StudentID, UserID, GPA, Skill, Major, SupervisorID) values (29, 94, 3.33, 2, 'Services', 3);
-insert into Student (StudentID, UserID, GPA, Skill, Major, SupervisorID) values (30, 87, 2.95, 12, 'Research and Development', 14);
-insert into Student (StudentID, UserID, GPA, Skill, Major, SupervisorID) values (31, 25, 1.83, 10, 'Engineering', 31);
-insert into Student (StudentID, UserID, GPA, Skill, Major, SupervisorID) values (32, 67, 1.63, 15, 'Human Resources', 16);
-insert into Student (StudentID, UserID, GPA, Skill, Major, SupervisorID) values (33, 28, 2.84, 24, 'Sales', 34);
-insert into Student (StudentID, UserID, GPA, Skill, Major, SupervisorID) values (34, 6, 2.82, 4, 'Human Resources', 2);
-insert into Student (StudentID, UserID, GPA, Skill, Major, SupervisorID) values (35, 54, 3.54, 6, 'Accounting', 31);
-insert into Student (StudentID, UserID, GPA, Skill, Major, SupervisorID) values (36, 49, 2.53, 3, 'Business Development', 19);
-insert into Student (StudentID, UserID, GPA, Skill, Major, SupervisorID) values (37, 13, 1.18, 9, 'Training', 28);
-insert into Student (StudentID, UserID, GPA, Skill, Major, SupervisorID) values (38, 30, 2.69, 21, 'Support', 25);
-insert into Student (StudentID, UserID, GPA, Skill, Major, SupervisorID) values (39, 30, 3.4, 13, 'Services', 31);
-insert into Student (StudentID, UserID, GPA, Skill, Major, SupervisorID) values (40, 44, 3.52, 13, 'Accounting', 11);
-insert into Student (StudentID, UserID, GPA, Skill, Major, SupervisorID) values (41, 27, 1.42, 10, 'Legal', 11);
-insert into Student (StudentID, UserID, GPA, Skill, Major, SupervisorID) values (42, 91, 2.17, 8, 'Services', 2);
-insert into Student (StudentID, UserID, GPA, Skill, Major, SupervisorID) values (43, 58, 3.81, 13, 'Business Development', 21);
-insert into Student (StudentID, UserID, GPA, Skill, Major, SupervisorID) values (44, 28, 1.43, 24, 'Human Resources', 10);
-insert into Student (StudentID, UserID, GPA, Skill, Major, SupervisorID) values (45, 53, 2.35, 12, 'Business Development', 14);
-insert into Student (StudentID, UserID, GPA, Skill, Major, SupervisorID) values (46, 84, 1.55, 6, 'Research and Development', 8);
-insert into Student (StudentID, UserID, GPA, Skill, Major, SupervisorID) values (47, 30, 1.85, 24, 'Human Resources', 34);
-insert into Student (StudentID, UserID, GPA, Skill, Major, SupervisorID) values (48, 5, 3.27, 21, 'Training', 34);
-insert into Student (StudentID, UserID, GPA, Skill, Major, SupervisorID) values (49, 19, 1.68, 25, 'Legal', 6);
-insert into Student (StudentID, UserID, GPA, Skill, Major, SupervisorID) values (50, 27, 1.23, 15, 'Training', 25);
-insert into Student (StudentID, UserID, GPA, Skill, Major, SupervisorID) values (51, 1, 3.50, 15, 'Training', 25);
+INSERT INTO Student (StudentID, UserID, GPA, Skill, Major, SupervisorID)
+VALUES 
+    (1, 96, 3.48, 5, 'Legal', 23),
+    (2, 66, 3.28, 22, 'Sales', 14),
+    (3, 58, 3.75, 10, 'Sales', 1),
+    (4, 19, 3.97, 9, 'Legal', 28),
+    (5, 17, 3.08, 20, 'Human Resources', 38),
+    (6, 81, 2.76, 22, 'Business Development', 2),
+    (7, 25, 3.91, 13, 'Legal', 29),
+    (8, 81, 3.55, 8, 'Sales', 1),
+    (9, 15, 2.76, 18, 'Accounting', 25),
+    (10, 51, 2.71, 5, 'Sales', 4),
+    (11, 24, 3.99, 24, 'Training', 28),
+    (12, 89, 2.76, 9, 'Human Resources', 6),
+    (13, 38, 2.51, 3, 'Human Resources', 17),
+    (14, 19, 2.24, 1, 'Training', 40),
+    (15, 45, 1.61, 12, 'Training', 6),
+    (16, 99, 1.6, 15, 'Human Resources', 12),
+    (17, 52, 2.16, 14, 'Services', 13),
+    (18, 51, 3.04, 5, 'Services', 23),
+    (19, 32, 3.76, 12, 'Training', 38),
+    (20, 56, 2.61, 12, 'Human Resources', 37),
+    (21, 33, 2.87, 20, 'Engineering', 18),
+    (22, 80, 3.06, 1, 'Sales', 28),
+    (23, 77, 2.41, 14, 'Sales', 12),
+    (24, 23, 3.6, 1, 'Training', 11),
+    (25, 18, 2.04, 23, 'Engineering', 19),
+    (26, 71, 1.82, 12, 'Human Resources', 19),
+    (27, 89, 1.23, 15, 'Training', 23),
+    (28, 20, 3.59, 24, 'Training', 28),
+    (29, 94, 3.33, 2, 'Services', 3),
+    (30, 87, 2.95, 12, 'Research and Development', 14),
+    (31, 25, 1.83, 10, 'Engineering', 31),
+    (32, 67, 1.63, 15, 'Human Resources', 16),
+    (33, 28, 2.84, 24, 'Sales', 34),
+    (34, 6, 2.82, 4, 'Human Resources', 2),
+    (35, 54, 3.54, 6, 'Accounting', 31),
+    (36, 49, 2.53, 3, 'Business Development', 19),
+    (37, 13, 1.18, 9, 'Training', 28),
+    (38, 30, 2.69, 21, 'Support', 25),
+    (39, 30, 3.4, 13, 'Services', 31),
+    (40, 44, 3.52, 13, 'Accounting', 11),
+    (41, 27, 1.42, 10, 'Legal', 11),
+    (42, 91, 2.17, 8, 'Services', 2),
+    (43, 58, 3.81, 13, 'Business Development', 21),
+    (44, 28, 1.43, 24, 'Human Resources', 10),
+    (45, 53, 2.35, 12, 'Business Development', 14),
+    (46, 84, 1.55, 6, 'Research and Development', 8),
+    (47, 30, 1.85, 24, 'Human Resources', 34),
+    (48, 5, 3.27, 21, 'Training', 34),
+    (49, 19, 1.68, 25, 'Legal', 6),
+    (50, 27, 1.23, 15, 'Training', 25),
+    (51, 1, 3.50, 15, 'Training', 25);
