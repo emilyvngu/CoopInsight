@@ -54,6 +54,8 @@ def fetch_job_ratings(company_name, job_name):
             (df['JobName'] == job_name.strip().lower())
         ]
 
+        st.write(filtered_df)
+
         if not filtered_df.empty:
             # Aggregate reviews and ratings
             aggregated_reviews = " ".join(filtered_df['Review'].tolist())
