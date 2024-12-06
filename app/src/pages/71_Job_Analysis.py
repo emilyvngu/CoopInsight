@@ -92,22 +92,22 @@ if not companies_jobs_df.empty:
             if st.button(f"View Ratings for {job_name} at {company_name}", key=f"{company_id}_{job_name}"):
                 ratings_data = fetch_job_ratings(company_name, job_name)
 
-            if ratings_data:
-                st.write(f"## Ratings for {company_name} - {job_name}")
+                if ratings_data:
+                    st.write(f"## Ratings for {company_name} - {job_name}")
 
-                # Display the overall average rating
-                st.write(f"**Average Overall Rating:** {ratings_data['average_rating']:.2f}/5")
+                    # Display the overall average rating
+                    st.write(f"**Average Overall Rating:** {ratings_data['average_rating']:.2f}/5")
 
-                # Display detailed average ratings
-                st.write("### Detailed Average Ratings")
-                for rating_category, value in ratings_data['detailed_ratings'].items():
-                    st.write(f"**{rating_category.replace('Rating', '')}:** {value:.2f}/5")
+                    # Display detailed average ratings
+                    st.write("### Detailed Average Ratings")
+                    for rating_category, value in ratings_data['detailed_ratings'].items():
+                        st.write(f"**{rating_category.replace('Rating', '')}:** {value:.2f}/5")
 
-                # Display combined reviews
-                st.write("### Aggregated Reviews")
-                st.write(ratings_data['aggregated_reviews'])
-            else:
-                st.warning(f"No ratings available for {job_name} at {company_name}.")
+                    # Display combined reviews
+                    st.write("### Aggregated Reviews")
+                    st.write(ratings_data['aggregated_reviews'])
+                else:
+                    st.warning(f"No ratings available for {job_name} at {company_name}.")
     else:
         st.warning("No results match your search query.")
 else:
