@@ -77,11 +77,9 @@ def get_companies_and_jobs():
 
 #------------------------------------------------------------
 # Get all industries already in job listings
-
 @analyst.route('/industries_in_jobs', methods=['GET'])
 def get_industries_in_jobs():
     try:
-        # Get the database cursor
         cursor = db.get_db().cursor()
 
         # Query to fetch industries with job listings
@@ -93,16 +91,13 @@ def get_industries_in_jobs():
         """
         cursor.execute(query)
 
-        # Fetch results
-        results = cursor.fetchall()
-        column_names = [desc[0] for desc in cursor.description]
-        data = [dict(zip(column_names, row)) for row in results]
+        theData = cursor.fetchall()
 
-        # Return the response
-        return jsonify({"success": True, "data": data}), 200
+        the_response = make_response(jsonify(theData))
+        the_response.status_code = 200
+        return response
 
     except Exception as e:
-        # Log the error and return a 500 error response
         print(f"Error fetching industries in jobs: {e}")
         return jsonify({"success": False, "error": str(e)}), 500
 
