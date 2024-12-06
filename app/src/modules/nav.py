@@ -80,7 +80,7 @@ def AdminPageNav():
 )
 
 def ErrorLogNav():
-    st.sidebar.page_link("pages/21_Admin_Error_Logs.pyy", label="View Error Log", icon="🚫"
+    st.sidebar.page_link("pages/21_Admin_Error_Logs.py", label="View Error Log", icon="🚫"
 )
 
 
@@ -129,6 +129,7 @@ def SideBarLinks(show_home=False):
         # If the user is an administrator, give them access to the administrator pages
         if st.session_state["role"] == "debug":
             AdminPageNav()
+            ErrorLogNav()
 
     # Always show the About page at the bottom of the list of links
     AboutPageNav()
