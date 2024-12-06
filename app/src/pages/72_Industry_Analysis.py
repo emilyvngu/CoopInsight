@@ -36,7 +36,8 @@ def fetch_industries():
         return pd.DataFrame()  # Return an empty DataFrame
 
 industries_list = fetch_industries()
-industry = st.selectbox("Select Industry", industries_list)
+industries_names_only = industries_list['IndustryName']
+industry = st.selectbox("Select Industry", industries_names_only)
 
 if st.button("Fetch Industry Compensation"):
     data = fetch_industry_compensation(time_period, industry)
