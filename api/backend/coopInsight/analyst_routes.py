@@ -97,39 +97,29 @@ def get_industries_in_jobs():
         response.status_code = 200
         return response
 
-    except Exception as e:
-        print(f"Error fetching industries in jobs: {e}")
-        return jsonify({"success": False, "error": str(e)}), 500
-
-@analyst.route('/available_positions/<industry>', methods=['GET'])
-def get_available_positions(industry):
+@analyst.route('/available_positions', methods=['GET'])
+def get_available_positions():
+    """
+    Fetch the number of job listings for each industry.
+    """
     try:
         cursor = db.get_db().cursor()
 
-        # Query to fetch the number of available positions
+        # Query to fetch job count grouped by industry
         query = """
-            SELECT COUNT(j.JobID) AS AvailablePositions
+            SELECT i.IndustryName, COUNT(j.JobID) AS JobCount
             FROM JobListing j
             JOIN Industry i ON j.IndustryID = i.IndustryID
+            GROUP BY i.IndustryName
+            ORDER BY JobCount DESC
         """
-        params = []
+        cursor.execute(query)
+        
+        theData = cursor.fetchall()
 
-        if industry != "All Industries":
-            query += " WHERE i.IndustryName = %s"
-            params.append(industry)
-
-        cursor.execute(query, params)
-        result = cursor.fetchone()
-
-        # Ensure the result is properly formatted
-        available_positions = result[0] if result and result[0] is not None else 0
-
-        return jsonify({"AvailablePositions": available_positions}), 200
-
-    except Exception as e:
-        import traceback
-        current_app.logger.error(f"Error fetching available positions: {traceback.format_exc()}")
-        return jsonify({"error": str(e)}), 500
+        response = make_response(jsonify(theData))
+        response.status_code = 200
+        return response
 
 
 @analyst.route('/top_skills/<industry>', methods=['GET'])
@@ -187,11 +177,14 @@ def get_application_success_rate(industry):
         cursor.execute(query, params)
         result = cursor.fetchone()
 
-        accepted, total = result
+        # Handle NULL values and calculate success rate
+        accepted = result[0] if result[0] is not None else 0
+        total = result[1] if result[1] is not None else 0
         success_rate = (accepted / total) * 100 if total > 0 else 0
 
         return jsonify({"ApplicationSuccessRate": success_rate}), 200
 
     except Exception as e:
-        current_app.logger.error(f"Error fetching application success rate: {e}")
+        import traceback
+        current_app.logger.error(f"Error fetching application success rate: {traceback.format_exc()}")
         return jsonify({"error": str(e)}), 500
