@@ -40,25 +40,31 @@ def fetch_job_ratings(company_name, job_name):
         df = pd.DataFrame(response.json())
         
         # Filter data for the specific company and job
-        filtered_df = df[(df['CompanyName'] == company_name) & (df['JobName'] == job_name)]
+        filtered_df = df[
+                (df['CompanyName'].str.strip().str.lower() == company_name.strip().lower()) &
+                (df['JobName'].str.strip().str.lower() == job_name.strip().lower())]
+
+        print(filtered_df)
 
         if not filtered_df.empty:
-            # Aggregate reviews and ratings
             aggregated_reviews = " ".join(filtered_df['Review'].tolist())
             average_rating = filtered_df['OverallRating'].mean()
+
+            detailed_ratings = filtered_df[[
+                'CompensationRating',
+                'LearningOpportunitiesRating',
+                'WorkCultureRating',
+                'WorkLifeBalanceRating'
+            ]].mean().to_dict()
 
             return {
                 "average_rating": average_rating,
                 "aggregated_reviews": aggregated_reviews,
-                "detailed_ratings": filtered_df[[
-                    'CompensationRating',
-                    'LearningOpportunitiesRating',
-                    'WorkCultureRating',
-                    'WorkLifeBalanceRating'
-                ]].mean().to_dict()
+                "detailed_ratings": detailed_ratings
             }
         else:
             return None
+
     except requests.exceptions.RequestException as e:
         st.error(f"Error fetching job ratings: {e}")
         logger.error(f"Error fetching job ratings: {e}")
