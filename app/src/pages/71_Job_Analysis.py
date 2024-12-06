@@ -41,8 +41,8 @@ def fetch_job_ratings(company_name, job_name):
         
         # Filter data for the specific company and job
         filtered_df = df[
-                (df['CompanyName'].str.strip().str.lower() == company_name.strip().lower()) &
-                (df['JobName'].str.strip().str.lower() == job_name.strip().lower())]
+                (df['CompanyName'] == company_name) &
+                (df['JobName'] == job_name)]
 
         st.write(filtered_df)
 
