@@ -39,12 +39,12 @@ companies_list = fetch_companies()
 companies_names_only = companies_list['CompanyName']
 company = st.selectbox("Select Comapny", companies_names_only)
 
-def fetch_available_positions():
+def fetch_available_positions(): 
     """
     Fetch the number of available positions for the selected Company.
     """
     try:
-        response = requests.get(f"{BASE_URL}/available_positions")
+        response = requests.get(f"{BASE_URL}/company_available_positions")
         response.raise_for_status()
         return pd.DataFrame(response.json())
     except requests.exceptions.RequestException as e:
@@ -57,7 +57,7 @@ def fetch_skills():
     Fetch all skills with its correlating company.
     """
     try:
-        response = requests.get(f"{BASE_URL}/skills_with_industries")
+        response = requests.get(f"{BASE_URL}/skills_with_companies")
         response.raise_for_status()
         return pd.DataFrame(response.json())
     except requests.exceptions.RequestException as e:
@@ -66,12 +66,12 @@ def fetch_skills():
         return None
 
 # Fetch Data and Populate Widgets
-if st.button("Fetch Industry Trends"):
-    st.write(f"### Industry Trends for {company}")
+if st.button("Fetch Company Trends"):
+    st.write(f"### Company Trends for {company}")
 
     # Number of Available Positions
     positions = fetch_available_positions()
-    filtered_positions = positions[positions['IndustryName'] == industry]
+    filtered_positions = positions[positions['CompanyName'] == company]
     if positions is not None:
         st.metric("Number of Available Positions", filtered_positions['JobCount'])
 
@@ -80,7 +80,7 @@ if st.button("Fetch Industry Trends"):
 
     if top_skills is not None:
 
-        filtered_skills = top_skills[top_skills['IndustryName'] == industry]
+        filtered_skills = top_skills[top_skills['CompanyName'] == company]
         sorted_skills = filtered_skills.sort_values(by='Demand', ascending=False)
 
         # Display top skills
@@ -89,6 +89,6 @@ if st.button("Fetch Industry Trends"):
             for _, row in sorted_skills.iterrows():
                 st.write(f"- {row['SkillName']} ({row['Demand']} jobs)")
         else:
-            st.write("No skills data available for the selected industry.")
+            st.write("No skills data available for the selected company.")
     else:
         st.write("No data available.")
