@@ -17,7 +17,7 @@ st.write('')
 st.write('')
 st.write('### What would you like to do today?')
 
-if st.button('Analyze Jobs', 
+if st.button('View Error Log', 
              type='primary',
              use_container_width=True):
-  st.switch_page('pages/71_Job_Analysis.py')
+  st.switch_page('pages/21_Admin_Error_Logs.py')

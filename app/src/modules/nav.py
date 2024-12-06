@@ -76,7 +76,12 @@ def CompanyAnalysisNav():
 
 #### ------------------------ System Admin Role ------------------------
 def AdminPageNav():
-    st.sidebar.page_link("pages/20_Admin_Home.py", label="System Admin", icon="👤")
+    st.sidebar.page_link("pages/20_Admin_Home.py", label="System Admin", icon="👤"
+)
+
+def ErrorLogNav():
+    st.sidebar.page_link("pages/21_Admin_Error_Logs.pyy", label="View Error Log", icon="🚫"
+)
 
 
 # --------------------------------Links Function -----------------------------------------------
