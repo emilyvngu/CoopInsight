@@ -62,6 +62,11 @@ def JobAnalysisNav():
         "pages/71_Job_Analysis.py", label="Job Analysis", icon="🌺"
     )
 
+def CompanyAnalysisNav():
+    st.sidebar.page_link(
+        "pages/73_Company_Analysis.py", label="Job Analysis", icon="🌺"
+    )
+
 
 #### ------------------------ System Admin Role ------------------------
 def AdminPageNav():
@@ -101,8 +106,9 @@ def SideBarLinks(show_home=False):
         # If the user role is usaid worker, show the Api Testing page
         if st.session_state["role"] == "analyst":
             AnalysisHomeNav()
-            IndustryAnalysisNav()
             JobAnalysisNav()
+            CompanyAnalysisNav()
+            IndustryAnalysisNav()
 
         # If the user is an administrator, give them access to the administrator pages
         if st.session_state["role"] == "administrator":
