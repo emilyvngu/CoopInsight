@@ -75,19 +75,6 @@ def get_companies_and_jobs():
         logger.error(f"Error fetching jobs: {e}")
         return make_response(jsonify({"error": "An error occurred while fetching jobs."}))
 
-@customers.route('/prediction/<var01>/<var02>', methods=['GET'])
-def predict_value(var01, var02):
-    current_app.logger.info(f'var01 = {var01}')
-    current_app.logger.info(f'var02 = {var02}')
-
-    returnVal = predict(var01, var02)
-    return_dict = {'result': returnVal}
-
-    the_response = make_response(jsonify(return_dict))
-    the_response.status_code = 200
-    the_response.mimetype = 'application/json'
-    return the_response
-
 @analyst.route('/industry_compensation/<time_period>/<industry>', methods=['GET'])
 def get_industry_compensation(time_period, industry):
     """
