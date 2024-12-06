@@ -27,6 +27,9 @@ def get_error_logs():
     query = "SELECT LogID, UserID, ErrorDescription, ErrorDate FROM ErrorLog ORDER BY ErrorDate DESC"
     cursor = db.get_db().cursor()
     cursor.execute(query)
-    results = cursor.fetchall()
-    return jsonify([dict(zip([col[0] for col in cursor.description], row)) for row in results]), 200
-    
+    theData = cursor.fetchall()
+
+    # Convert the results to a JSON response
+    response = make_response(jsonify(theData))
+    response.status_code = 200
+    return response
