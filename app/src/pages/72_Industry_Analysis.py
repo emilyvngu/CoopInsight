@@ -52,6 +52,19 @@ def fetch_available_positions():
         logger.error(f"Error fetching available positions: {e}")
         return None
 
+def fetch_skills():
+    """
+    Fetch the number of available positions for the selected industry.
+    """
+    try:
+        response = requests.get(f"{BASE_URL}/skills_with_industries")
+        response.raise_for_status()
+        return pd.DataFrame(response.json())
+    except requests.exceptions.RequestException as e:
+        st.error(f"Error fetching available positions: {e}")
+        logger.error(f"Error fetching available positions: {e}")
+        return None
+
 # Fetch Data and Populate Widgets
 if st.button("Fetch Industry Trends"):
     st.write(f"### Industry Trends for {industry}")
@@ -63,11 +76,22 @@ if st.button("Fetch Industry Trends"):
         st.metric("Number of Available Positions", filtered_positions['JobCount'])
 
     # Top Skills in Demand
-    top_skills = fetch_top_skills(industry)
+    top_skills = fetch_skills()
+
     if top_skills:
-        st.write("### Top Skills in Demand")
-        for skill in top_skills:
-            st.write(f"- {skill['SkillName']} ({skill['Demand']} jobs)")
+        
+        filtered_skills = top_skills[top_skills['IndustryName'] == industry]
+        sorted_skills = filtered_skills.sort_values(by='Demand', ascending=False)
+
+        # Display top skills
+        if not sorted_skills.empty:
+            st.write("### Top Skills in Demand")
+            for _, row in sorted_skills.iterrows():
+                st.write(f"- {row['SkillName']} ({row['Demand']} jobs)")
+        else:
+            st.write("No skills data available for the selected industry.")
+    else:
+        st.write("No data available.")
 
     # Application Success Rate
     success_rate = fetch_application_success_rate(industry)
