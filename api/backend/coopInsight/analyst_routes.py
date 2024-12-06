@@ -75,28 +75,64 @@ def get_companies_and_jobs():
         logger.error(f"Error fetching jobs: {e}")
         return make_response(jsonify({"error": "An error occurred while fetching jobs."}))
 
+@customers.route('/prediction/<var01>/<var02>', methods=['GET'])
+def predict_value(var01, var02):
+    current_app.logger.info(f'var01 = {var01}')
+    current_app.logger.info(f'var02 = {var02}')
 
-@analyst.route('/industry_compensation', methods=['GET'])
-def get_industry_compensation():
-    time_period = request.args.get('time_period')
-    industry = request.args.get('industry')
+    returnVal = predict(var01, var02)
+    return_dict = {'result': returnVal}
 
-    query = """
-        SELECT i.IndustryName, AVG(j.Compensation) AS AverageCompensation
-        FROM JobListing j
-        JOIN Industry i ON j.IndustryID = i.IndustryID
-        WHERE j.Posted >= NOW() - INTERVAL %s
+    the_response = make_response(jsonify(return_dict))
+    the_response.status_code = 200
+    the_response.mimetype = 'application/json'
+    return the_response
+
+@analyst.route('/industry_compensation/<time_period>/<industry>', methods=['GET'])
+def get_industry_compensation(time_period, industry):
     """
-    params = ["12 MONTH"] if time_period == "Last 12 Months" else ["6 MONTH"]
-    if industry != "All Industries":
-        query += " AND i.IndustryName = %s"
-        params.append(industry)
+    Fetch the average compensation for job listings by industry and time period.
+    """
+    try:
+        # Construct base SQL query
+        query = """
+            SELECT i.IndustryName, AVG(j.Compensation) AS AverageCompensation
+            FROM JobListing j
+            JOIN Industry i ON j.IndustryID = i.IndustryID
+        """
+        params = []
 
-    query += " GROUP BY i.IndustryName"
-    cursor = db.get_db().cursor()
-    cursor.execute(query, params)
-    results = cursor.fetchall()
-    return jsonify({"data": [dict(zip([col[0] for col in cursor.description], row)) for row in results]})
+        # Add time period condition if not "All Time"
+        if time_period != "All Time":
+            query += " WHERE j.Posted >= NOW() - INTERVAL %s"
+            params.append("12 MONTH" if time_period == "Last 12 Months" else "6 MONTH")
+
+        # Add industry condition if not "All Industries"
+        if industry != "All Industries":
+            if "WHERE" in query:
+                query += " AND i.IndustryName = %s"
+            else:
+                query += " WHERE i.IndustryName = %s"
+            params.append(industry)
+
+        # Group by industry
+        query += " GROUP BY i.IndustryName"
+
+        # Execute the query
+        cursor = db.get_db().cursor()
+        cursor.execute(query, params)
+        results = cursor.fetchall()
+
+        # Convert results to a list of dictionaries
+        data = [dict(zip([col[0] for col in cursor.description], row)) for row in results]
+
+        # Return JSON response
+        return jsonify({"data": data}), 200
+
+    except Exception as e:
+        # Log the error and return a 500 response
+        current_app.logger.error(f"Error fetching industry compensation: {e}")
+        return jsonify({"error": "An error occurred while fetching industry compensation."}), 500
 
 @analyst.route('/available_positions', methods=['GET'])
 def get_available_positions():
