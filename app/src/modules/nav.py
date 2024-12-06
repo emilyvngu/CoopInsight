@@ -30,21 +30,27 @@ def StudentOffersNav():
 
 
 #### ------------------------ Examples for Role of Employer (Jane Lane) ------------------------
-def PolStratAdvHomeNav():
+def EmployerHomeNav():
     st.sidebar.page_link(
-        "pages/00_Pol_Strat_Home.py", label="Political Strategist Home", icon="👤"
+        "pages/60_Employer_Home.py", label="Employer Home", icon="👤"
     )
 
-
-def WorldBankVizNav():
-    st.sidebar.page_link(
-        "pages/01_World_Bank_Viz.py", label="World Bank Visualization", icon="🏦"
+def JobListingsNav():
+    st.sidebar.page_link("pages/62_Job_Listings.py", label="View Job Listings", icon="🗺️"
     )
 
+def CurrentOffersNav():
+    st.sidebar.page_link("pages/65_Current_Offers.py", label="View Current Offers", icon="🗺️"
+    )
 
-def MapDemoNav():
-    st.sidebar.page_link("pages/02_Map_Demo.py", label="Map Demonstration", icon="🗺️")
+def MakeOffersNav():
+    st.sidebar.page_link("pages/61_Job_Post.py", label="Post An Offering", icon="🗺️"
+    )
 
+def ViewEmployeesNav():
+    st.sidebar.page_link(
+        "pages/66_Current_Employees.py", label="View Current Employees", icon="🏦"
+    )
 
 ## ------------------------ Examples for Role of System's Analyst (Sara Lee) ------------------------
 def AnalysisHomeNav():
@@ -112,7 +118,11 @@ def SideBarLinks(show_home=False):
 
         # If the user is an employer, give them access to the employer pages
         if st.session_state["role"] == "employer":
-            AdminPageNav()
+            EmployerHomeNav()
+            JobListingsNav()
+            CurrentOffersNav()
+            MakeOffersNav()
+            ViewEmployeesNav()
 
         # If the user is an administrator, give them access to the administrator pages
         if st.session_state["role"] == "administrator":
