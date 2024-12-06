@@ -60,7 +60,7 @@ if st.button("Fetch Industry Trends"):
     positions = fetch_available_positions()
     filtered_positions = positions[positions['IndustryName'] == industry]
     if positions is not None:
-        st.metric("Number of Available Positions", positions)
+        st.metric("Number of Available Positions", filtered_positions['JobCount'])
 
     # Top Skills in Demand
     top_skills = fetch_top_skills(industry)
