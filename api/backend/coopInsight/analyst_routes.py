@@ -114,77 +114,9 @@ def get_available_positions():
             ORDER BY JobCount DESC
         """
         cursor.execute(query)
-        
+
         theData = cursor.fetchall()
 
         response = make_response(jsonify(theData))
         response.status_code = 200
         return response
-
-
-@analyst.route('/top_skills/<industry>', methods=['GET'])
-def get_top_skills(industry):
-    try:
-        cursor = db.get_db().cursor()
-
-        # Query to fetch the most required skills
-        query = """
-            SELECT s.SkillName, COUNT(js.SkillID) AS Demand
-            FROM JobSkill js
-            JOIN Skill s ON js.SkillID = s.SkillID
-            JOIN JobListing j ON js.JobID = j.JobID
-            JOIN Industry i ON j.IndustryID = i.IndustryID
-        """
-        params = []
-
-        if industry != "All Industries":
-            query += " WHERE i.IndustryName = %s"
-            params.append(industry)
-
-        query += " GROUP BY s.SkillName ORDER BY Demand DESC LIMIT 10"
-
-        cursor.execute(query, params)
-        results = cursor.fetchall()
-
-        # Convert results to a list of dictionaries
-        data = [dict(zip([col[0] for col in cursor.description], row)) for row in results]
-        return jsonify({"TopSkills": data}), 200
-
-    except Exception as e:
-        current_app.logger.error(f"Error fetching top skills: {e}")
-        return jsonify({"error": str(e)}), 500
-
-@analyst.route('/application_success_rate/<industry>', methods=['GET'])
-def get_application_success_rate(industry):
-    try:
-        cursor = db.get_db().cursor()
-
-        # Query to calculate the application success rate
-        query = """
-            SELECT
-                COUNT(CASE WHEN a.Status = 'Accepted' THEN 1 END) AS AcceptedApplications,
-                COUNT(a.ApplicantID) AS TotalApplications
-            FROM Applicant a
-            JOIN JobListing j ON a.JobID = j.JobID
-            JOIN Industry i ON j.IndustryID = i.IndustryID
-        """
-        params = []
-
-        if industry != "All Industries":
-            query += " WHERE i.IndustryName = %s"
-            params.append(industry)
-
-        cursor.execute(query, params)
-        result = cursor.fetchone()
-
-        # Handle NULL values and calculate success rate
-        accepted = result[0] if result[0] is not None else 0
-        total = result[1] if result[1] is not None else 0
-        success_rate = (accepted / total) * 100 if total > 0 else 0
-
-        return jsonify({"ApplicationSuccessRate": success_rate}), 200
-
-    except Exception as e:
-        import traceback
-        current_app.logger.error(f"Error fetching application success rate: {traceback.format_exc()}")
-        return jsonify({"error": str(e)}), 500
