@@ -45,4 +45,4 @@ st.markdown(
     """
 )
 
-st.sidebar.page_link("Home.py", label="Home", icon="🏠")
+st.page_link("Home.py", label="Home", icon="🏠")
