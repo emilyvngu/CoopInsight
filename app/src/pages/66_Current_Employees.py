@@ -34,18 +34,6 @@ try:
     st.markdown("### Employee List")
     with st.container():
         st.dataframe(df, use_container_width=True, height=400)
-    
-    if not df.empty:
-        st.markdown("### Employee List")
-        st.dataframe(
-            df.style.format(
-                formatter={
-                    "OfferDate": lambda x: x.strftime("%Y-%m-%d") if not pd.isnull(x) else "",
-                }
-            ).highlight_max(axis=0, color="lightblue"),
-            use_container_width=True,
-            height=400,
-        )
 
     # Employee selection
     st.markdown("### Actions")
