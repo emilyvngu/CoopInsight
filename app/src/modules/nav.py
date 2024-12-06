@@ -125,7 +125,7 @@ def SideBarLinks(show_home=False):
             ViewEmployeesNav()
 
         # If the user is an administrator, give them access to the administrator pages
-        if st.session_state["role"] == "administrator":
+        if st.session_state["role"] == "debug":
             AdminPageNav()
 
     # Always show the About page at the bottom of the list of links
