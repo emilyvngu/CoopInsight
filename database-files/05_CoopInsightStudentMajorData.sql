@@ -4,7 +4,7 @@ INSERT INTO StudentMajor (Major, IndustryID)
 VALUES 
     ('Training', 23),
     ('Support', 23),
-    ('Engineering', 15);
+    ('Engineering', 15),
     ('Business Development', 22),
     ('Accounting', 16),
     ('Sales', 5),
