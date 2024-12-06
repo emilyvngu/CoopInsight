@@ -42,7 +42,6 @@ def fetch_job_ratings(company_name, job_name):
 
         # Log the raw data
         st.write("Raw DataFrame from API:")
-        st.write(df)
 
         # Normalize column values to avoid case and whitespace issues
         df['CompanyName'] = df['CompanyName'].str.strip().str.lower()
@@ -53,8 +52,6 @@ def fetch_job_ratings(company_name, job_name):
             (df['CompanyName'] == company_name.strip().lower()) &
             (df['JobName'] == job_name.strip().lower())
         ]
-
-        st.write(filtered_df)
 
         if not filtered_df.empty:
             # Aggregate reviews and ratings
@@ -99,9 +96,7 @@ if not companies_jobs_df.empty:
         for _, row in filtered_df.iterrows():
             company_id = row["CompanyID"]
             company_name = row["CompanyName"]
-            st.write(company_name)
             job_name = row["JobName"]
-            st.write(job_name)
 
             st.write(f"**Company:** {company_name}")
             st.write(f"**Job:** {job_name}")
