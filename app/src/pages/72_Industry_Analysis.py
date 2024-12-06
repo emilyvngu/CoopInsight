@@ -78,8 +78,8 @@ if st.button("Fetch Industry Trends"):
     # Top Skills in Demand
     top_skills = fetch_skills()
 
-    if top_skills:
-        
+    if top_skills is not None:
+
         filtered_skills = top_skills[top_skills['IndustryName'] == industry]
         sorted_skills = filtered_skills.sort_values(by='Demand', ascending=False)
 
