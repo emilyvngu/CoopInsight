@@ -28,3 +28,4 @@ if len(event.selection['rows']):
     jobName = st.session_state['JobName']
 
     st.page_link('pages/63_Applicants_Screen.py', label=f'View {jobName} Applicants?')
+    st.page_link('pages/67_View_Job_Ratings.py', label=f'View ratings for {jobName}?')

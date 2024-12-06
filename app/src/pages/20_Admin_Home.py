@@ -21,3 +21,9 @@ if st.button('View Error Log',
              type='primary',
              use_container_width=True):
   st.switch_page('pages/21_Admin_Error_Logs.py')
+
+if st.button('View Flagged Jobs', type='primary', use_container_width=True):
+  st.switch_page('pages/22_Flagged_Jobs.py')
+
+if st.button('View Flagged Ratings', type='primary', use_container_width=True):
+    st.switch_page('pages/23_Flagged_Ratings.py')
