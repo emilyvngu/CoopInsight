@@ -12,7 +12,7 @@ SideBarLinks()
 
 name = st.session_state['username']
 st.title('System Admin Home Page')
-st.write(f"Welcome, {name}.")
+st.write(f"Welcome, {st.session_state['first_name']}.")
 st.write('')
 st.write('')
 st.write('### What would you like to do today?')
