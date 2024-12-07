@@ -4,7 +4,7 @@ These pages are meant to show you an example of some of the features of Streamli
 
 The pages folder contains individual Python scripts for the various pages of your Streamlit application. Each file corresponds to a specific feature, role, or functionality in the CoopInsight platform. The folder is structured to support role-based access control (RBAC), ensuring that users only see the pages relevant to their assigned role or persona.
 
-## Admin Pages (Done)
+## Admin Pages 
 - 20_Admin_Home.py: 
     - The homepage for system administrators, providing tool options.
 - 21_Admin_Error_Logs.py: 
@@ -50,7 +50,7 @@ The pages folder contains individual Python scripts for the various pages of you
 - 68_Flag_Rating.py: 
     - Enables users to flag inappropriate job ratings for admin review and potential action.
 
-## Analytics and Insights Pages (Done)
+## Analytics and Insights Pages 
 - 70_Systems_Analyst.py: 
     - Home page for system analyst.
 - 71_Job_Analysis.py: 
