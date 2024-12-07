@@ -12,14 +12,11 @@ logger = logging.getLogger(__name__)
 # Set Streamlit page configuration
 st.set_page_config(layout="wide", page_title="Industry Trends Dashboard")
 
-# Display the appropriate sidebar links for the role of the logged-in user
 SideBarLinks()
 
 # Dashboard Layout
 st.title("Industry Trends Dashboard")
 
-# Fetch and Display Data
-# Average Compensation by Industry
 BASE_URL = "http://api:4000/analyst"
 
 def fetch_industries():
@@ -35,8 +32,12 @@ def fetch_industries():
         logger.error(f"Error fetching data: {e}")
         return pd.DataFrame()  # Return an empty DataFrame
 
+
+# Get a list of all industry names existing in joblistings
 industries_list = fetch_industries()
 industries_names_only = industries_list['IndustryName']
+
+# Select widget to choose a industry
 industry = st.selectbox("Select Industry", industries_names_only)
 
 def fetch_available_positions():
@@ -96,7 +97,7 @@ if st.button("Fetch Industry Trends"):
         filtered_skills = top_skills[top_skills['IndustryName'] == industry]
         sorted_skills = filtered_skills.sort_values(by='Demand', ascending=False)
 
-        # Display top skills
+        # Display top skills within selected industry
         if not sorted_skills.empty:
             st.write("### Top Skills in Demand")
             for _, row in sorted_skills.iterrows():

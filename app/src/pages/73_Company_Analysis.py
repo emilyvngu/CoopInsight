@@ -12,31 +12,31 @@ logger = logging.getLogger(__name__)
 # Set Streamlit page configuration
 st.set_page_config(layout="wide", page_title="Company Trends Dashboard")
 
-# Display the appropriate sidebar links for the role of the logged-in user
 SideBarLinks()
 
 # Dashboard Layout
 st.title("Company Trends Dashboard")
 
-# Fetch and Display Data
-# Average Compensation by Industry
 BASE_URL = "http://api:4000/analyst"
 
 def fetch_companies():
     """
-    Fetch the list of companies from the Flask backend.
+    Fetch the list of companies already in joblistings from the Flask backend.
     """
     try:
         response = requests.get(f"{BASE_URL}/companies_in_jobs") 
         response.raise_for_status() 
-        return pd.DataFrame(response.json())  # Convert JSON to DataFrame
+        return pd.DataFrame(response.json()) 
     except requests.exceptions.RequestException as e:
         st.error(f"Error fetching data: {e}")
         logger.error(f"Error fetching data: {e}")
         return pd.DataFrame()  # Return an empty DataFrame
 
+# Get a list of all companies names existing in joblistings
 companies_list = fetch_companies()
 companies_names_only = companies_list['CompanyName']
+
+# Select widget to choose a company name
 company = st.selectbox("Select Comapny", companies_names_only)
 
 def fetch_available_positions(): 
@@ -83,7 +83,7 @@ if st.button("Fetch Company Trends"):
         filtered_skills = top_skills[top_skills['CompanyName'] == company]
         sorted_skills = filtered_skills.sort_values(by='Demand', ascending=False)
 
-        # Display top skills
+        # Display top skills within selected company name
         if not sorted_skills.empty:
             st.write("### Top Skills in Demand")
             for _, row in sorted_skills.iterrows():

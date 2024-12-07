@@ -1,5 +1,5 @@
 ########################################################
-# Coop blueprint of endpoints
+# Employer blueprint of endpoints
 ########################################################
 import logging
 logging.basicConfig(format='%(filename)s:%(lineno)s:%(levelname)s -- %(message)s', level=logging.INFO)
