@@ -31,6 +31,9 @@ The project implements a Role-Based Access Control (RBAC) system in Streamlit, a
 - **Sara Lee (Systems Analyst)**: Using data trends to optimize co-op opportunities.  
 - **President Aoun (System Administrator)**: Managing database integrity, troubleshooting issues, and ensuring optimal system performance.
 
+## Demo Video:
+https://youtu.be/42vC9YdJ2BU
+
 ## Setting Up the Project with Docker
 This project uses Docker to simplify the setup and deployment of its three main components: the Streamlit App, Flask API, and MySQL Database.
 
