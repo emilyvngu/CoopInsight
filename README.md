@@ -7,7 +7,7 @@ This application serves as a data-driven platform to enhance the co-op experienc
 ## Project Features:
 - **Student Tools**: Role-specific filters, skill requirement matching, compensation ratings, and workplace culture reviews based on real student experiences.
 - **Employer Tools**: Streamlined applicant filtering by skills, GPA, and major; tools for posting/editing job listings; and applicant tracking.
-- **University Tools**: Data insights for improving co-op opportunities, evaluating company performance, and maintaining job quality.
+- **Analyst Tools**: Data insights for improving co-op opportunities, evaluating company performance, and maintaining job quality.
 - **System Administration**: Tools to ensure smooth operation, including job management, user permissions, and real-time error handling.
 
 ## Meet the Team:
