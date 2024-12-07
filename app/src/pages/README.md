@@ -15,20 +15,8 @@ The pages folder contains individual Python scripts for the various pages of you
     - Information about our Application
 
 ## Student Pages
-- 40_Users_Home.py:
-     - Serves as the homepage for all users, providing role-specific navigation and features.
-- 41_User_Data.py:
-     - Displays detailed user information and provides options for viewing or editing profiles.
-- 42_Skill_Data.py:
-     - Allows users to view, add, or manage skills associated with job listings or profiles.
-- 43_Industry_Data.py:
-     - Displays and manages data about industries relevant to the platform.
-- 44_Update_User.py:
-     - Provides functionality to update user details, including roles and permissions.
 - 45_User_Job_Listings_Home.py:
      - Acts as the main page for users to browse and filter job listings.
-- 46_Detail_Job.py:
-     - Displays detailed information about a specific job listing, including requirements and company info.
 - 47_Apply_To_Job.py:
      - Enables students to submit applications for specific job postings.
 - 48_Accept_Job_Offer.py:
@@ -37,8 +25,6 @@ The pages folder contains individual Python scripts for the various pages of you
      - Enables users to flag inappropriate or suspicious job offers for admin review.
 - 50_Student_Home.py: 
      - The homepage for students, showing relevant navigation options.
-- 51_Coop_Dashboard.py:
-     - Displays an overview of co-op data and analytics for tracking progress and performance.
 - 52_Offer_Dashboard.py:
      - Summarizes all active offers for users, including statuses and details.
 
