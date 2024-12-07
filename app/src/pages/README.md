@@ -48,7 +48,7 @@ The pages folder contains individual Python scripts for the various pages of you
 - 68_Flag_Rating.py: 
     - Enables users to flag inappropriate job ratings for admin review and potential action.
 
-## Analytics and Insights Pages 
+## Analytic Pages 
 - 70_Systems_Analyst.py: 
     - Home page for system analyst.
 - 71_Job_Analysis.py: 
