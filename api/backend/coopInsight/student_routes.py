@@ -19,8 +19,8 @@ def get_students():
 
     cursor = db.get_db().cursor()
     cursor.execute('''
-                    SELECT * FROM students
-                    ''')
+                        SELECT * FROM students
+                        ''')
 
     theData = cursor.fetchall()
 
