@@ -24,7 +24,8 @@ coop = Blueprint('coop', __name__)
 def get_users():
 
     cursor = db.get_db().cursor()
-    cursor.execute('''SELECT UserID, FirstName, LastName,
+    cursor.execute('''
+                    SELECT UserID, FirstName, LastName,
                     Email, Password, PhoneNumber, AccessLevel FROM User
                     ORDER BY UserID
                    ''')
