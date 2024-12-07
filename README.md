@@ -28,7 +28,7 @@ The project implements a Role-Based Access Control (RBAC) system in Streamlit, a
 ## User Personas:
 - **Joe Shmoe (Student)**: Navigating the co-op search process with tools to filter jobs, and rate employers.  
 - **Jane Lane (Employer)**: Efficiently filtering and hiring candidates with data-backed insights.  
-- **Sara Lee (Northeastern Systems Analyst)**: Using data trends to optimize co-op opportunities.  
+- **Sara Lee (Systems Analyst)**: Using data trends to optimize co-op opportunities.  
 - **President Aoun (System Administrator)**: Managing database integrity, troubleshooting issues, and ensuring optimal system performance.
 
 ## Setting Up the Project with Docker
