@@ -15,4 +15,5 @@ VALUES
     (2, 'The company is okay, but the work is boring and the people are not very friendly.', 2, 2, 2, 2, 2, 2, 2),
     (3, 'The company is decent, however I think there are better options when it comes to the work force in this field. The CEO is funny, though :)', 5, 3, 3, 3, 3, 3, 3),
     (1, 'I wish the company would listen. I tried talking to HR about my concerns and they did nothing.', 1, 1, 1, 1, 4, 4, 4),
-    (1, 'I wish the company would listen. I tried talking to HR about my concerns and they did nothing.', 1, 1, 1, 1, 16, 1, 4);
+    (1, 'I wish the company would listen. I tried talking to HR about my concerns and they did nothing.', 1, 1, 1, 1, 16, 1, 4),
+    (1, 'I wish the company would listen. I tried talking to HR about my concerns and they did nothing.', 1, 1, 1, 1, 6, 19, 4);
