@@ -1,7 +1,5 @@
 # `pages` Folder
 
-These pages are meant to show you an example of some of the features of Streamlit and the way we will limit functionality access by role/persona. It is not meant to represent a complete application!!!
-
 The pages folder contains individual Python scripts for the various pages of your Streamlit application. Each file corresponds to a specific feature, role, or functionality in the CoopInsight platform. The folder is structured to support role-based access control (RBAC), ensuring that users only see the pages relevant to their assigned role or persona.
 
 ## Admin Pages 
