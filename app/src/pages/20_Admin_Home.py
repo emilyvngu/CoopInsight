@@ -10,7 +10,6 @@ st.set_page_config(layout = 'wide')
 # Show appropriate sidebar links for the role of the currently logged in user
 SideBarLinks()
 
-name = st.session_state['username']
 st.title('System Admin Home Page')
 st.write(f"Welcome.")
 st.write('')
